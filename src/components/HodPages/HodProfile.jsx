@@ -212,7 +212,7 @@ export default function HodProfile() {
 
               <div className="d-flex gap-3 mt-3">
                 <button
-                  className="btn btn-primary px-4 py-2"
+                  className="btn btn-primary px-4 py-2"a
                   onClick={() => setShowModal(true)}
                 >
                   Update Profile

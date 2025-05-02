@@ -61,14 +61,20 @@ export default function StudentHeader() {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
-          <div className="navbar-nav ms-auto p-4 p-lg-0">
-            <Link to="/student" className="nav-item nav-link" >
+
+        {/* <div className="navbar-nav ms-auto p-4 p-lg-0">
+        <Link to="/" className="nav-item nav-link active" style={{fontSize:"16px"}}>
+          Home
+        </Link>
+        </div> */}
+          <div className="navbar-nav ms-auto p-4 p-lg-0" >
+            <Link to="/student" className="nav-item nav-link active" style={{fontSize:"14px"}} >
               Home
             </Link>
-            <Link to="/student/department" className="nav-item nav-link" >
+            <Link to="/student/department" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Department
             </Link>
-            <Link to="/student/courses" className="nav-item nav-link" >
+            <Link to="/student/courses" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Course
             </Link>
             {/* <div className="nav-item dropdown">
@@ -99,8 +105,9 @@ export default function StudentHeader() {
                 to="#"
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown" 
+                style={{fontSize:"14px"}}
               >
-                Certificate
+                Certificate 
               </Link>
               <div className="dropdown-menu fade-down m-0">
                 <Link to="/student/certificates" className="dropdown-item" >
@@ -117,6 +124,7 @@ export default function StudentHeader() {
                 to="#"
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown" 
+                style={{fontSize:"14px"}}
               >
                 Gatepass
               </Link>
@@ -135,6 +143,7 @@ export default function StudentHeader() {
                 to="#"
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown" 
+                style={{fontSize:"14px"}}
               >
                 Complaint
               </Link>
@@ -147,14 +156,14 @@ export default function StudentHeader() {
                 </Link>
               </div>
             </div>
-            <Link to="/student/profile" className="nav-item nav-link" >
+            <Link to="/student/profile" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Profile
             </Link>
-            <Link to="/student/changePassword" className="nav-item nav-link" >
+            {/* <Link to="/student/changePassword" className="nav-item nav-link" >
               ChangePassword
-            </Link>
+            </Link> */}
           </div>
-          <Link className="btn btn-primary py-4 px-lg-5 d-none d-lg-block" onClick={openModal} style={{fontSize:"14px"}}>
+          <Link className="btn btn-primary py-4 px-lg-5 d-none d-lg-block"  onClick={openModal} style={{fontSize:"14px"}}>
             LOGOUT
             <i className="fa fa-arrow-right ms-3" />
           </Link>

@@ -45,6 +45,8 @@ export default function AddTask() {
                     deadline("");
                     hodId("");
                     nav('/admin/complaints')
+                    setdeadline("")
+                    setHodlist("")
                 }
                 else {
                     // setLoad(false)
@@ -78,8 +80,9 @@ export default function AddTask() {
                                 value={deadline}
                                 onChange={(e) => setdeadline(e.target.value)}
                                 placeholder="Title"
+                                required
                             />
-                            <label for="taskTitle">Title</label>
+                            <label for="taskTitle">Deadline</label>
                         </div>
 
                         <div className=" form-floating mb-3">
@@ -89,6 +92,7 @@ export default function AddTask() {
                                 value={hodId}
                                 onChange={(e) => sethodId(e.target.value)}
                                 placeholder="Assigned To"
+                                required
                             >
                                 <option value="" selected disabled>Select HOD</option>
                                 {hodlist?.map((el, index) => (

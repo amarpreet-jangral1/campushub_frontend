@@ -61,15 +61,17 @@ export default function AdminHeader() {
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto p-4 p-lg-0" >
-            <Link to="/admin" className="nav-item nav-link">
+            {/* <Link to="/admin" className="nav-item nav-link active" style={{fontSize:"14px"}}> 
               Dashboard
-            </Link>
+              
+            </Link> */}
 
             <div className="nav-item dropdown">
               <Link
                 to=""
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
+                style={{fontSize:"14px"}}
               >
                 Department
               </Link>
@@ -87,6 +89,7 @@ export default function AdminHeader() {
                 to=""
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
+                style={{fontSize:"14px"}}
               >
                 Course
               </Link>
@@ -104,6 +107,7 @@ export default function AdminHeader() {
                 to=""
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
+                style={{fontSize:"14px"}}
               >
                 Student
               </Link>
@@ -121,6 +125,7 @@ export default function AdminHeader() {
                 to=""
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
+                style={{fontSize:"14px"}}
               >
                 HOD
               </Link>
@@ -134,26 +139,30 @@ export default function AdminHeader() {
               </div>
             </div>
 
-            <Link to="/admin/complaints" className="nav-item nav-link">
+            <Link to="/admin/complaints" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Complaint
             </Link>
 
-            <Link to="/admin/viewTask" className="nav-item nav-link">
+            <Link to="/admin/viewTask" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Task
             </Link>
 
-            <Link to="/admin/manageCertificate" className="nav-item nav-link">
+            <Link to="/admin/manageCertificate" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Certificate
             </Link>
 
-            <Link to="/admin/manageGatepass" className="nav-item nav-link">
+            <Link to="/admin/manageGatepass" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Gatepass
             </Link>
-            <div className="nav-item dropdown">
+            <Link to="/admin/profile" className="nav-item nav-link" style={{fontSize:"14px"}}>
+              Profile
+            </Link>
+            {/* <div className="nav-item dropdown">
               <Link
                 to=""
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
+                style={{fontSize:"14px"}}
               >
                 User
               </Link>
@@ -165,7 +174,7 @@ export default function AdminHeader() {
                   Change Password
                 </Link>
               </div>
-            </div>
+            </div> */}
 
           </div>
         </div>

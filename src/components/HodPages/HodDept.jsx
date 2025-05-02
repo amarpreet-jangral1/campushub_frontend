@@ -28,8 +28,10 @@ export default function HodDept() {
     <main className="main">
       {/* Hero Section */}
       <PageHeader
-        backgroundImage="/assets/img/manage.webp"
+        backgroundImage="/assets/img/dept.jpg"
+        // backgroundImage="/assets/img/manage.webp"
         title="Department"
+        
       />
       <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 

@@ -45,7 +45,8 @@ export default function HodTask() {
     <main className="main">
       {/* Hero Section */}
       <PageHeader
-        backgroundImage="/assets/img/manage.webp"
+        backgroundImage="/assets/img/task.jpg"
+        // backgroundImage="/assets/img/manage.webp"
         title="View Task"
       />
       <ToastContainer position="top-center" autoClose={2000} theme="colored" />

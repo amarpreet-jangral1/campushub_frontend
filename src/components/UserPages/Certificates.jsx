@@ -61,7 +61,7 @@ export default function Certificates() {
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
                 loop={true}
                 pagination={{ clickable: true }}
-                className="mb-5"
+                // className="mb-5"
             >
                 <SwiperSlide>
                     <div

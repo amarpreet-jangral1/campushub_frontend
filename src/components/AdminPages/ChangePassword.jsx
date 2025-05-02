@@ -60,7 +60,8 @@ export default function ChangePassword() {
     return (
         <>
             <PageHeader
-                backgroundImage="/assets/img/departments.jpg"
+                // backgroundImage="/assets/img/departments.jpg"
+                backgroundImage="/assets/img/photo21.jpg"
                 title="Change Password"
             // quote="Knowledge is the path to success"
             />

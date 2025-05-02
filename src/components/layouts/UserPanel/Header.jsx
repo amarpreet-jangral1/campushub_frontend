@@ -16,26 +16,24 @@ export default function Header(){
       </h2>
     </Link>
 
-{/* <Link
-  to="/"
-  className="navbar-brand d-flex align-items-center px-4 px-lg-5"
->
-  <h2 className="m-0 text-primary">
-    <img
-      src="assets/img/campus1.png"
-      alt="CampusHub Logo"
-      className="img-fluid"
-      style={{
-        height: '150px',     // Lower height for better header fit
-        width: '500px',      // Maintains aspect ratio
-        maxWidth: '220px',  // Adjust this value to extend width
-        // objectFit: 'contain'
-      }}
-    />
-  </h2>
-</Link> */}
-
-
+      {/* <Link
+        to="/"
+        className="navbar-brand d-flex align-items-center px-4 px-lg-5"
+      >
+        <h2 className="m-0 text-primary">
+          <img
+            src="assets/img/campus1.png"
+            alt="CampusHub Logo"
+            className="img-fluid"
+            style={{
+              height: '150px',     // Lower height for better header fit
+              width: '500px',      // Maintains aspect ratio
+              maxWidth: '220px',  // Adjust this value to extend width
+              // objectFit: 'contain'
+            }}
+          />
+        </h2>
+      </Link> */}
     <button
       type="button"
       className="navbar-toggler me-4"

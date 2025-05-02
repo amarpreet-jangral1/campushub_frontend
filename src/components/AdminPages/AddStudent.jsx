@@ -104,7 +104,8 @@ export default function AddStudent() {
     return (
         <>
             <PageHeader
-                backgroundImage="/assets/img/carousel-2.jpg"
+                backgroundImage="/assets/img/photo6.png"
+                // backgroundImage="/assets/img/carousel-2.jpg"
                 title="Add Student"
             //  quote="Knowledge is the path to success"
             />

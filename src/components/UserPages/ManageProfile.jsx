@@ -76,40 +76,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import ApiServices from "../ApiServices";
@@ -186,10 +152,10 @@ export default function ManageProfile() {
       <div className="container-xxl py-5">
         <div className="container">
           <div className="text-center mb-5">
-            <h6 className="section-title bg-white text-center text-primary px-3">
+            <h6 className="h5 section-title bg-white text-center text-primary px-3">
               Profile
             </h6>
-            <h1 className="mb-4">Student Profile</h1>
+           
           </div>
 
           <div className="row align-items-center g-5">

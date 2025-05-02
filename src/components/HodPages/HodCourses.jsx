@@ -25,7 +25,8 @@ export default function HodCourses() {
     <main className="main">
       {/* Hero Section */}
       <PageHeader
-        backgroundImage="/assets/img/manage.webp"
+        backgroundImage="/assets/img/course.jpg"
+        // backgroundImage="/assets/img/manage.webp"
         title="Course"
       />
       <ToastContainer position="top-center" autoClose={2000} theme="colored" />

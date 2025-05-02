@@ -27,14 +27,15 @@ export default function AdminProfile() {
         <main className="main">
             {/* Hero Section */}
             <PageHeader
-                backgroundImage="/assets/img/manage.webp"
+                backgroundImage="/assets/img/photo21.jpg"
+                // backgroundImage="/assets/img/manage.webp"
                 title="Profile"
             />
             <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 
             {/* /Hero Section */}
             <div className="container  py-5 my-5">
-                <div className="table-responsive" data-aos-delay={500}>
+                <div className=" table-responsive" data-aos-delay={500}>
                     <table className="table table-bordered table-dark">
                         <tbody>
                             <tr>
@@ -47,6 +48,11 @@ export default function AdminProfile() {
                             </tr>
                         </tbody>
                     </table>
+                    {/* <div className="d-flex gap-3 mt-3"> */}
+                        <Link to="/admin/changepassword" className="btn btn-dark mt-3">
+                        Change Password
+                        </Link>
+                    {/* </div> */}
                 </div>
             </div>
         </main>

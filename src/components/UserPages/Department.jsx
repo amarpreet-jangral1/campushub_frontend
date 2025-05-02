@@ -68,7 +68,7 @@ export default function Department() {
                   <h6 className="display-6 lead text-white mb-5 animated slideInUp">
                     {/* "The right course today shapes your tomorrow." */}
                   </h6>
-                  <h3 className="text-white animated slideInDown">Departments</h3>
+                  <h3 className="h1 text-white animated slideInDown">Departments</h3>
                 </div>
               </div>
             </div>

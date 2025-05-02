@@ -119,7 +119,7 @@ export default function Complaints() {
 
           <form onSubmit={HandleForm}
             className="py-4">
-            <div className="form-floating mb-3">
+            {/* <div className="form-floating mb-3">
               <input
                 type="text"
                 className="form-control"
@@ -129,7 +129,20 @@ export default function Complaints() {
                 required
               />
               <label for="complaintRegarding">Complaint Title</label>
-            </div>
+            </div> */}
+            <div className="form-floating  mb-4">
+                <select
+                  className="form-select pt-2"
+                  value={complaintRegarding}
+                  onChange={(e) => setcomplaintRegarding(e.target.value)}
+                  >
+                  <option value="" disabled>Complaint Regarding</option>
+                  <option value="Academic">Academic</option>
+                  <option value="Infrastructure">Infrastructure</option>
+                  <option value="Administrative">Administrative</option>
+                  <option value="Other">Other</option>
+                </select>
+            </div>            
 
             <div className="form-floating mb-3">
               <input

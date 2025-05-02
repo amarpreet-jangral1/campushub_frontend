@@ -30,7 +30,7 @@ return(
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.64)',
+            backgroundColor: 'rgba(0, 0, 0, 0.50)',
             zIndex: 1,
           }}
         ></div>

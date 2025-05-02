@@ -62,21 +62,24 @@ export default function HodHeader() {
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto p-4 p-lg-0">
-            <Link to="/hod/hoddept" className="nav-item nav-link" style={{fontSize:"16px"}}>
+            <Link to="/hod" className="nav-item nav-link active" style={{fontSize:"14px"}} >
+              Home
+            </Link>
+            <Link to="/hod/hoddept" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Department
             </Link>
-            <Link to="/hod/hodcourses" className="nav-item nav-link" style={{fontSize:"16px"}}>
+            <Link to="/hod/hodcourses" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Courses
             </Link>
-            <Link to="/hod/hodtask" className="nav-item nav-link" style={{fontSize:"16px"}}>
+            <Link to="/hod/hodtask" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Task
             </Link>
-            <Link to="/hod/hodprofile" className="nav-item nav-link" style={{fontSize:"16px"}}>
+            <Link to="/hod/hodprofile" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Profile
             </Link>
-            <Link to="/hod/changepassword" className="nav-item nav-link" style={{fontSize:"16px"}}>
+            {/* <Link to="/hod/changepassword" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Change Password
-            </Link>
+            </Link> */}
           </div>
           <Link className="btn btn-primary py-4 px-lg-5 d-none d-lg-block" onClick={openModal}>
             LOGOUT

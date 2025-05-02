@@ -67,7 +67,7 @@ export default function Courses() {
                   <h6 className="display-6 lead text-white mb-5 animated slideInUp">
                     {/* "The right course today shapes your tomorrow." */}
                   </h6>
-                  <h3 className="text-white animated slideInDown">Courses</h3>
+                  <h1 className="text-white animated slideInDown">Courses</h1>
                 </div>
               </div>
             </div>
