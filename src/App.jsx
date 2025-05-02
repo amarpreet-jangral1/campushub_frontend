@@ -53,7 +53,8 @@ import ViewCertificate from './components/UserPages/ViewCertificate'
 import ViewGatepass from './components/UserPages/ViewGatepass'
 import ViewComplaint from './components/UserPages/ViewComplaint'
 import AdminProfile from './components/AdminPages/AdminProfile'
-import ChangePassword from './components/AdminPages/changePassword'
+// import ChangePassword from './components/AdminPages/changePassword'
+import ChangePassword from './components/AdminPages/ChangePassword'
 import HodChangePassword from './components/HodPages/HodChangePassword'
 import StudentChangePassword from './components/UserPages/StudentChangePassword'
 
@@ -125,7 +126,7 @@ function App() {
             <Route path='/admin/task_update' element={<UpdateTask />} />
             <Route path='/admin/complaints' element={<AdminComplaints />} />
             <Route path='/admin/profile' element={<AdminProfile />} />
-            <Route path='/admin/changepassword' element={<ChangePassword />} />
+            <Route path='/admin/changepassword' element={<ChangePassword/>} />
 
 
           </Route>
