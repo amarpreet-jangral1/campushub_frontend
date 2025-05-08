@@ -75,10 +75,11 @@ export default function Gatepass() {
           <div
             className="position-relative d-flex align-items-center justify-content-center"
             style={{
-              backgroundImage: `url(/assets/img/certification.jpg)`,
-              backgroundSize: 'cover',
+              backgroundImage: `url(/assets/img/apply_gatepass.jpeg)`,
+              // backgroundImage: `url(/assets/img/certification.jpg)`,
+              backgroundSize: '100% 150%',
               backgroundPosition: 'center',
-              height: '350px',
+              height: '400px',
             }}
           >
             <div
@@ -88,7 +89,7 @@ export default function Gatepass() {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                backgroundColor: 'rgba(0, 0, 0, 0.64)',
+                backgroundColor: 'rgba(0, 0, 0, 0.50)',
                 zIndex: 1,
               }}
             ></div>

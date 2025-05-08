@@ -115,7 +115,7 @@ export default function UpdateStudent() {
   return (
     <>
       <PageHeader
-        backgroundImage="/assets/img/carousel-2.jpg"
+        backgroundImage="/assets/img/photo6.png"
         title="Update Student"
       // quote="Knowledge is the path to success"
       />

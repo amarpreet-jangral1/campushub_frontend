@@ -12,8 +12,10 @@
   "dependencies": {
     "aos": "^2.3.4",
     "axios": "^1.8.4",
+    "dayjs": "^1.11.13",
     "framer-motion": "^12.6.3",
     "lucide-react": "^0.487.0",
+    "razorpay": "^2.9.6",
     "react": "^19.0.0",
     "react-awesome-reveal": "^4.3.1",
     "react-bootstrap": "^2.10.9",

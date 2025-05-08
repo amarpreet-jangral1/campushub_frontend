@@ -28,7 +28,8 @@ export default function HodDept() {
     <main className="main">
       {/* Hero Section */}
       <PageHeader
-        backgroundImage="/assets/img/dept.jpg"
+      
+        backgroundImage="/assets/img/dept_bg.jpg"
         // backgroundImage="/assets/img/manage.webp"
         title="Department"
         

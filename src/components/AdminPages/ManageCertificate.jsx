@@ -47,8 +47,8 @@ export default function ManageCertificate() {
         <main className="main">
             {/* Hero Section */}
             <PageHeader
-                backgroundImage="/assets/img/manage.webp"
-                title="Manage Certificate"
+                backgroundImage="/assets/img/apply_certi.jpg"
+                title="Requested Certificates"
             />
             <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 

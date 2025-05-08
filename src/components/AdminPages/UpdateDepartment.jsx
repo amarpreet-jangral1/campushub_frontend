@@ -72,7 +72,7 @@ export default function UpdateDepartment() {
   return (
     <>
       <PageHeader
-        backgroundImage="/assets/img/departments.jpg"
+        backgroundImage="/assets/img/dept_bg.jpg"
         title="Update Department"
       // quote="Knowledge is the path to success"
       />

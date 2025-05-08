@@ -118,6 +118,9 @@ export default function AdminHeader() {
                 <Link to="/admin/student_manage" className="dropdown-item">
                   Manage
                 </Link>
+                <Link to="/admin/AllPayments" className="dropdown-item">
+                  Fees Details
+                </Link>
               </div>
             </div>
             <div className="nav-item dropdown">
@@ -154,28 +157,27 @@ export default function AdminHeader() {
             <Link to="/admin/manageGatepass" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Gatepass
             </Link>
-            <Link to="/admin/profile" className="nav-item nav-link" style={{fontSize:"14px"}}>
-              Profile
-            </Link>
-            {/* <div className="nav-item dropdown">
+            {/* <div className="nav-item dropdown active">
               <Link
-                to=""
-                className="nav-link dropdown-toggle"
+                to="/admin/profile"
+                className="nav-link dropdown-toggle active"
                 data-bs-toggle="dropdown"
                 style={{fontSize:"14px"}}
               >
-                User
+                profile
               </Link>
               <div className="dropdown-menu fade-down m-0">
+                <Link to="/admin/AllPayments" className="dropdown-item">
+                  Fees Details
+                </Link>
                 <Link to="/admin/profile" className="dropdown-item">
                   Profile
                 </Link>
-                <Link to="/admin/changepassword" className="dropdown-item">
-                  Change Password
-                </Link>
               </div>
             </div> */}
-
+            <Link to="/admin/profile" className="nav-item nav-link active" style={{fontSize:"14px"}}>
+              Profile
+            </Link>
           </div>
         </div>
         <Link className="btn btn-primary py-4 px-lg-5 d-none d-lg-block" onClick={openModal}>

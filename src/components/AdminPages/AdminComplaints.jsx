@@ -45,8 +45,8 @@ export default function AdminComplaints() {
     <main className="main">
       {/* Hero Section */}
       <PageHeader
-        backgroundImage="/assets/img/manage.webp"
-        title="View Complaints"
+        backgroundImage="/assets/img/complaint.jpg"
+        title="View Complaints Status"
       />
       <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 

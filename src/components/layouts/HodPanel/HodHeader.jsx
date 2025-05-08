@@ -74,6 +74,9 @@ export default function HodHeader() {
             <Link to="/hod/hodtask" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Task
             </Link>
+            <Link to="/hod/AllPayments" className="nav-item nav-link" style={{fontSize:"14px"}}>
+              Fees Details
+            </Link>
             <Link to="/hod/hodprofile" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Profile
             </Link>

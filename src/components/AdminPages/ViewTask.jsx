@@ -45,8 +45,9 @@ export default function ViewTask() {
         <main className="main">
             {/* Hero Section */}
             <PageHeader
-                backgroundImage="/assets/img/manage.webp"
-                title="View Task"
+                backgroundImage="/assets/img/manage4.webp"
+                // backgroundImage="/assets/img/task.jpg"
+                title="View Task Status"
             />
             <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 

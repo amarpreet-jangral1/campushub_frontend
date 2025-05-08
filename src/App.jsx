@@ -57,6 +57,9 @@ import AdminProfile from './components/AdminPages/AdminProfile'
 import ChangePassword from './components/AdminPages/ChangePassword'
 import HodChangePassword from './components/HodPages/HodChangePassword'
 import StudentChangePassword from './components/UserPages/StudentChangePassword'
+import Payment from './components/UserPages/Payment'
+import AllPayments from './components/AdminPages/AllPayments'
+import PaymentHistory from './components/UserPages/PaymentHistory'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -91,6 +94,9 @@ function App() {
             <Route path='/student/changePassword' element={<StudentChangePassword />} />
             <Route path='/student/login' element={<Login />} />
             <Route path='/student/register' element={<Register />} />
+            <Route path='/student/payment' element={<Payment/>} />
+            <Route path='/student/paymenthistory' element={<PaymentHistory/>}/>
+            
           </Route>
 
           <Route path='/admin' element={<AdminMaster />}>
@@ -129,6 +135,8 @@ function App() {
             <Route path='/admin/changepassword' element={<ChangePassword/>} />
 
 
+            <Route path='/admin/AllPayments' element={<AllPayments/>}/>
+
           </Route>
           <Route path='/hod' element={<HodMaster />}>
             <Route path='/hod' element={<HodHome />} />
@@ -138,6 +146,9 @@ function App() {
             <Route path='/hod/hodstatus' element={<HodStatus />} />
             <Route path='/hod/hodprofile' element={<HodProfile />} />
             <Route path='/hod/changepassword' element={<HodChangePassword />} />
+
+
+            <Route path='/hod/AllPayments' element={<AllPayments/>} />
 
             <Route path='/hod/complaintResponse/:id' element={<ComplaintResponse />} />
 

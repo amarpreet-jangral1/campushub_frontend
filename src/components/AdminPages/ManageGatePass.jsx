@@ -53,8 +53,8 @@ export default function ManageGatePass() {
         <main className="main">
             {/* Hero Section */}
             <PageHeader
-                backgroundImage="/assets/img/manage.webp"
-                title="Manage Gatepass"
+                backgroundImage="/assets/img/gatepass.jpg"
+                title="Requested Gatepass"
             />
             <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 

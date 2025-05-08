@@ -22,7 +22,6 @@ export default function AddCourse() {
                 console.log("error is", err);
             })
     }
-
     useEffect(() => {
         getData()
     }, [])
@@ -72,7 +71,7 @@ export default function AddCourse() {
     return (
         <>
             <PageHeader
-                backgroundImage="/assets/img/courses.jpg"
+                backgroundImage="/assets/img/course.jpg"
                 title="Add Courses"
             // quote="Knowledge is the path to success"
             />

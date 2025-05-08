@@ -60,10 +60,10 @@ export default function ViewComplaint() {
                     <div
                         className="position-relative d-flex align-items-center justify-content-center"
                         style={{
-                            backgroundImage: `url(/assets/img/certification.jpg)`,
+                            backgroundImage: `url(/assets/img/complaint.jpg)`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            height: '350px',
+                            height: '400px',
                         }}
                     >
                         <div
@@ -73,7 +73,7 @@ export default function ViewComplaint() {
                                 left: 0,
                                 right: 0,
                                 bottom: 0,
-                                backgroundColor: 'rgba(0, 0, 0, 0.64)',
+                                backgroundColor: 'rgba(0, 0, 0, 0.50)',
                                 zIndex: 1,
                             }}
                         ></div>
@@ -84,7 +84,7 @@ export default function ViewComplaint() {
                             <div className="row justify-content-center align-items-center">
                                 <div className="col-lg-10 text-center">
                                     <h6 className="display-6 lead text-white mb-3 animated slideInUp">
-                                        View Complaints
+                                        Track your Complaint
                                     </h6>
                                     <h3 className="text-white animated slideInDown">
                                         {/* "Empowering your achievements with official recognition." */}

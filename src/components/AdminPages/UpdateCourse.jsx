@@ -81,7 +81,7 @@ export default function UpdateCourse() {
     return (
         <>
             <PageHeader
-                backgroundImage="/assets/img/courses.jpg"
+                backgroundImage="/assets/img/course.jpg"
                 title="Update Courses"
             // quote="Knowledge is the path to success"
             />

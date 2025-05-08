@@ -77,6 +77,10 @@ export default function StudentHeader() {
             <Link to="/student/courses" className="nav-item nav-link" style={{fontSize:"14px"}}>
               Course
             </Link>
+            {/* <Link to="/student/payment" className="nav-item nav-link " style={{fontSize:"14px"}} >
+              Fees
+            </Link> */}
+           
             {/* <div className="nav-item dropdown">
               <Link
                 to="#"
@@ -153,6 +157,24 @@ export default function StudentHeader() {
                 </Link>
                 <Link to="/student/viewcomplaints" className="dropdown-item">
                   Track Complaint
+                </Link>
+              </div>
+            </div>
+            <div className="nav-item dropdown">
+              <Link
+                to="#"
+                className="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown" 
+                style={{fontSize:"14px"}}
+              >
+                Fees 
+              </Link>
+              <div className="dropdown-menu fade-down m-0">
+                <Link to="/student/payment" className="dropdown-item" >
+                  Pay Fees
+                </Link>
+                <Link to="/student/paymenthistory" className="dropdown-item" >
+                  Payment History
                 </Link>
               </div>
             </div>

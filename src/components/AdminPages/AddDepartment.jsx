@@ -53,7 +53,7 @@ export default function AddDepartment() {
   return (
     <>
       <PageHeader
-        backgroundImage="/assets/img/departments.jpg"
+        backgroundImage="/assets/img/dept_bg.jpg"
         title="Add Department"
         // quote="Knowledge is the path to success"
       />

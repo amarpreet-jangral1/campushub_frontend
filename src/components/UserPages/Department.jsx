@@ -39,10 +39,11 @@ export default function Department() {
           <div
             className="position-relative d-flex align-items-center justify-content-center"
             style={{
-              backgroundImage: `url(/assets/img/departments.jpg)`,
+              // backgroundImage: `url(/assets/img/dept_bg.webp)`,
+              backgroundImage: `url(/assets/img/dept_bg.jpg)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              height: '350px',
+              height: '400px',
             }}
           >
             {/* Dark overlay */}
@@ -53,7 +54,7 @@ export default function Department() {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                backgroundColor: 'rgba(0, 0, 0, 0.60)',
+                backgroundColor: 'rgba(0, 0, 0, 0.35)',
                 zIndex: 1,
               }}
             ></div>
