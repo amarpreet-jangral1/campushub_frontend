@@ -138,6 +138,8 @@ export default function AddStudent() {
                                         value={student_phone}
                                         onChange={(e) => setstudent_phone(e.target.value)}
                                         placeholder="Phone Number"
+                                        pattern="^[6-9]\d{9}$"
+                                        title="Enter a valid Phone Number"
                                         required
                                     />
                                     <label for="student_phone">Phone Number</label>
@@ -151,6 +153,9 @@ export default function AddStudent() {
                                         className="form-control"
                                         value={student_email}
                                         onChange={(e) => setstudent_email(e.target.value)}
+
+                                        pattern="^[a-zA-Z0-9_-]+@[a-z]+\.[a-z]{2,}$"
+                                        title="Enter a valid email address"
                                         placeholder="Email"
                                         required
                                     />
@@ -164,6 +169,9 @@ export default function AddStudent() {
                                         className="form-control"
                                         value={student_password}
                                         onChange={(e) => setstudent_password(e.target.value)}
+                                        
+                                        // pattern="^[A-Za-z0-9@#$-_]{6,}$"
+                                        // title="Password must be at least 6 characters long and can include uppercase and lowercase letters, numbers, and @ # $ - _ "
                                         placeholder="Password"
                                         required
                                     />

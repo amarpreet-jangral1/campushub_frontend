@@ -91,9 +91,18 @@ export default function HodChangePassword() {
                                         onChange={(e) => setNewpassword(e.target.value)}
                                         placeholder="New Password"
                                         required
+                                    
                                         disabled={loading}
                                     />
                                     <label htmlFor="newpassword">New Password</label>
+                                    {
+                                    newpassword.length > 0 &&
+                                    !/^(?=.*[A-Za-z])(?=.*[\d@#$-_])[A-Za-z\d@#$-_]{6,}$/.test(newpassword) && (
+                                        <p style={{ color: "red", fontSize: "14px" }}>
+                                        Password must be at least 6 characters, include letters and at least one number or special character (@, #, $, -, _)
+                                        </p>
+                                    )
+                                }
                                 </div>
 
                                 <div className="form-floating mb-3">
@@ -104,17 +113,27 @@ export default function HodChangePassword() {
                                         onChange={(e) => setConfirmpassword(e.target.value)}
                                         placeholder="Confirm Password"
                                         required
+                                    
                                         disabled={loading}
                                     />
                                     <label htmlFor="confirmpassword">Confirm Password</label>
+                                    {
+                                    confirmpassword &&
+                                    newpassword !== confirmpassword && (
+                                        <p style={{ color: "red", fontSize: "14px" }}>
+                                        Passwords do not match
+                                        </p>
+                                    )
+                                }
                                 </div>
 
                                 <button
                                     type="submit"
                                     className="btn btn-primary w-100 py-3 rounded-pill"
-                                    disabled={loading}
+                                    disabled={loading || !/^[A-Za-z0-9@#$-_]{6,}$/.test(newpassword) || newpassword !== confirmpassword}
+
                                 >
-                                    {loading ? "Processing..." : "Submit"}
+                                    {loading ? "Processing..." : "Confirm"}
                                 </button>
                             </form>
                         </div>

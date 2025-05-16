@@ -6,10 +6,14 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ApiServices from "../ApiServices";
+import PulseLoader from "react-spinners/PulseLoader"; 
 
 export default function ManageHod() {
   var [hoddata, sethoddata] = useState([]);
+  const [loading, setLoading] = useState(true); 
+
   const getdata = () => {
+  setLoading(true);
     
     ApiServices.manageHod({ status: true })
       .then((res) => {
@@ -20,6 +24,9 @@ export default function ManageHod() {
         console.log("error is", err);
 
       })
+      .finally(() => {
+        setLoading(false); // ✅ Stop loader
+      });
   }
 
   useEffect(() => {
@@ -56,6 +63,13 @@ export default function ManageHod() {
 
       <div className="container  py-5 my-5">
         <div className="table-responsive" data-aos-delay={500}>
+          {
+            loading ? (
+              <div className="text-center text-muted fs-4" style={{ height: "200px" }}>
+              {/* <PulseLoader color="#36d7b7" size={15} /> */}
+              <PulseLoader color="#3fb2d1" size={15} loading={loading}/> {/* Bootstrap primary color */}
+              </div>
+            ) : (
           <table className="table table-bordered table-hover" style={{ cursor: "pointer" }}>
             <thead className="table-dark text-uppercase text-center">
               <tr>
@@ -93,6 +107,9 @@ export default function ManageHod() {
               ))}
             </tbody>
           </table>
+            )
+          }
+          
         </div>
       </div>
     </>

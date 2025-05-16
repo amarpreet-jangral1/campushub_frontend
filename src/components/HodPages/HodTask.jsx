@@ -3,12 +3,16 @@ import PageHeader from "./HodPageHeader";
 import { useEffect, useState } from "react";
 import ApiServices from "../ApiServices";
 import { Link } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 
 export default function HodTask() {
 
   var [tasks, settasks] = useState([])
+  const [loading, setLoading] = useState(true); 
 
   const getData = () => {
+  setLoading(true);
+
     ApiServices.manageTask({})
       .then((res) => {
         settasks(res.data.data)
@@ -16,6 +20,9 @@ export default function HodTask() {
       .catch((err) => {
         console.log("error is", err);
       })
+      .finally(() => {
+        setLoading(false); // ✅ Stop loader
+      });
   }
 
   useEffect(() => {
@@ -54,6 +61,13 @@ export default function HodTask() {
       {/* /Hero Section */}
       <div className="container  py-5 my-5">
         <div className="table-responsive" data-aos-delay={500}>
+                    {
+            loading ? (
+              <div className="text-center text-muted fs-4" style={{ height: "200px" }}>
+              {/* <PulseLoader color="#36d7b7" size={15} /> */}
+              <PulseLoader color="#3fb2d1" size={15} loading={loading}/> {/* Bootstrap primary color */}
+              </div>
+            ) : (
           <table className="table table-bordered">
             <thead className="table-dark text-uppercase text-center">
               <tr>
@@ -86,6 +100,8 @@ export default function HodTask() {
               ))}
             </tbody>
           </table>
+            )
+          }
         </div>
       </div>
     </main>

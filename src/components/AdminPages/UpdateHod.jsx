@@ -172,6 +172,8 @@ export default function UpdateHod() {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="Email"
+                                        pattern="^[a-zA-Z0-9_-]+@[a-z]+\.[a-z]{2,}$"
+                                        title="Enter a valid email address"
                                     />
                                     <label>Email</label>
                                 </div>
@@ -196,6 +198,8 @@ export default function UpdateHod() {
                                         value={contact}
                                         onChange={(e) => setContact(e.target.value)}
                                         placeholder="contact"
+                                        pattern="^[6-9]\d{9}$"
+                                        title="Enter a valid Contact Number"
                                     />
                                     <label >contact</label>
                                 </div>

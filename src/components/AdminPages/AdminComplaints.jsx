@@ -4,10 +4,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ApiServices from "../ApiServices";
 import { Link } from "react-router-dom";
+import PulseLoader from "react-spinners/PulseLoader"; 
 
 export default function AdminComplaints() {
   var [complaints, setcomplaints] = useState([])
+  const [loading, setLoading] = useState(true); 
+
   const getData = () => {
+  setLoading(true);
+
     ApiServices.manageComplaint({ status: true })
       .then((res) => {
         setcomplaints(res.data.data)
@@ -15,6 +20,9 @@ export default function AdminComplaints() {
       .catch((err) => {
         console.log("error is", err);
       })
+      .finally(() => {
+        setLoading(false); // ✅ Stop loader
+      });
   }
 
   useEffect(() => {
@@ -53,47 +61,58 @@ export default function AdminComplaints() {
       {/* /Hero Section */}
       <div className="container  py-5 my-5">
         <div className="table-responsive" data-aos-delay={500}>
-          <table className="table table-bordered">
-            <thead className="table-dark text-uppercase text-center">
-              <tr>
-                <th>Sr.No</th>
-                <th>Student Name</th>
-                <th>Complaint Title</th>
-                <th>Department</th>
-                <th>Email</th>
-                <th>Description</th>
-                <th>Response</th>
-                <th>Attachment</th>
-                <th>Assigned HOD</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {complaints.map((el, index) => (
-                <tr key={index} className="text-center">
-                  <td>{index + 1}</td>
-                  <td>{el?.studentId?.name}</td>
-                  <td>{el?.complaintRegarding}</td>
-                  <td>{el?.departmentId?.dept_name}</td>
-                  <td>{el?.studentId?.email}</td>
-                  <td>{el?.complaintDescription}</td>
-                  <td>{el?.complaintResponse}</td>
-                  <td>
-                    {el?.image ? <><a href={el?.image} className="btn btn-dark" target="_blank">View</a></> : <></>}
-                  </td>
-                  <td>{el?.hodId?.name} - {el?.hodId?.email}</td>
-                  <td><p style={{ fontWeight: "bolder", fontSize: "15px" }}>{el.complaintStatus}</p></td>
-                  <td>
-                    {/* <button onClick={() => editcomplaints(el)} className="btn btn-info btn-sm">Edit</button>
-                    <button onClick={() => deletecomplaints(el.id)} className="btn btn-danger btn-sm">Delete</button> */}
-                    {el?.complaintStatus == "Pending" ? <><button onClick={() => changeStatus(el?._id, "In Process")} className="btn btn-danger btn-sm">Start</button></> : <></>}
-                    {el?.complaintStatus == "In Process" ? <><Link to={'/admin/task_add/' + el?._id} className="btn btn-primary btn-sm">Assign to HOD</Link></> : <></>}
-                  </td>
+          {
+            loading ? (
+              <div className="text-center text-muted fs-4" style={{ height: "200px" }}>
+              {/* <PulseLoader color="#36d7b7" size={15} /> */}
+              <PulseLoader color="#3fb2d1" size={15} loading={loading}/> {/* Bootstrap primary color */}
+              </div>
+            ) : (
+            <table className="table table-bordered">
+              <thead className="table-dark text-uppercase text-center">
+                <tr>
+                  <th>Sr.No</th>
+                  <th>Student Name</th>
+                  <th>Complaint Title</th>
+                  <th>Department</th>
+                  <th>Email</th>
+                  <th>Description</th>
+                  <th>Response</th>
+                  <th>Attachment</th>
+                  <th>Assigned HOD</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {complaints.map((el, index) => (
+                  <tr key={index} className="text-center">
+                    <td>{index + 1}</td>
+                    <td>{el?.studentId?.name}</td>
+                    <td>{el?.complaintRegarding}</td>
+                    <td>{el?.departmentId?.dept_name}</td>
+                    <td>{el?.studentId?.email}</td>
+                    <td>{el?.complaintDescription}</td>
+                    <td>{el?.complaintResponse}</td>
+                    <td>
+                      {el?.image ? <><a href={el?.image} className="btn btn-dark" target="_blank">View</a></> : <></>}
+                    </td>
+                    <td>{el?.hodId?.name} - {el?.hodId?.email}</td>
+                    <td><p style={{ fontWeight: "bolder", fontSize: "15px" }}>{el.complaintStatus}</p></td>
+                    <td>
+                      {/* <button onClick={() => editcomplaints(el)} className="btn btn-info btn-sm">Edit</button>
+                      <button onClick={() => deletecomplaints(el.id)} className="btn btn-danger btn-sm">Delete</button> */}
+                      {el?.complaintStatus == "Pending" ? <><button onClick={() => changeStatus(el?._id, "In Process")} className="btn btn-danger btn-sm">Start</button></> : <></>}
+                      {el?.complaintStatus == "In Process" ? <><Link to={'/admin/task_add/' + el?._id} className="btn btn-primary btn-sm">Assign to HOD</Link></> : <></>}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            )
+          }
+          
+          
         </div>
       </div>
     </main>

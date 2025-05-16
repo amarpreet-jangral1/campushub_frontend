@@ -102,6 +102,7 @@ export default function AddHod() {
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         placeholder="HOD Name"
+                                        required
                                     />
                                     <label> Name</label>
                                 </div>
@@ -113,6 +114,7 @@ export default function AddHod() {
                                         value={dept_name}
                                         onChange={(e) => setdept_name(e.target.value)}
                                         placeholder="Department_name"
+                                        required
                                     >
                                         <option value="" selected disabled>Select Department</option>
                                         {departments.map((el, index) => (
@@ -130,6 +132,9 @@ export default function AddHod() {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="Email"
+                                        pattern="^[a-zA-Z0-9_-]+@[a-z]+\.[a-z]{2,}$"
+                                        title="Enter a valid email address"
+                                        required
                                     />
                                     <label>Email</label>
                                 </div>
@@ -142,6 +147,9 @@ export default function AddHod() {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         placeholder="password"
+                                         pattern="^[A-Za-z0-9@#$-_]{6,}$"
+                                        title="Password must be at least 6 characters long and can include uppercase and lowercase letters, numbers, and @ # $ - _ "
+                                        required   
                                     />
                                     <label>password</label>
                                 </div>
@@ -154,6 +162,10 @@ export default function AddHod() {
                                         value={contact}
                                         onChange={(e) => setContact(e.target.value)}
                                         placeholder="contact"
+                                        pattern="^[6-9]\d{9}$"
+                                        title="Enter a valid Contact Number"
+                                        required
+
                                     />
                                     <label >contact</label>
                                 </div>
@@ -166,6 +178,7 @@ export default function AddHod() {
                                         value={address}
                                         onChange={(e) => setAddress(e.target.value)}
                                         placeholder="Address"
+                                        required
                                     />
                                     <label >Address</label>
                                 </div>
@@ -177,6 +190,7 @@ export default function AddHod() {
                                     accept=".pdf, .jpg, .png"
                                     ref={fileInputRef}
                                     onChange={(e) => setimage(e.target.files[0])}
+                                    required
                                 />
                                 <label className="form-label" >Upload  (PDF, JPG, PNG)</label>
                             </div></div>
@@ -188,6 +202,7 @@ export default function AddHod() {
                                         value={qualification}
                                         onChange={(e) => setQualification(e.target.value)}
                                         placeholder="Qualification"
+                                        required
                                     />
                                     <label >Qualification</label>
                                 </div>

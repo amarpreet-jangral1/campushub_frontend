@@ -64,7 +64,7 @@ export default function UpdateStudent() {
         setstudent_phone(res.data.data.contact)
         setstudent_gender(res.data.data.gender)
         // setstudent_course(res.data.data.courseId.course_name)
-        setstudent_course(res.data.data.courseId.course_name + "-" + res.data.data.courseId.course_code)
+        setstudent_course(res.data.data.courseId.course_name )
         setstudent_dept(res.data.data.departmentId.dept_name)
         setstudent_enroll(res.data.data.enrollment_year)
         setoldimage(res.data.data.image)
@@ -191,6 +191,8 @@ export default function UpdateStudent() {
                     value={student_phone}
                     onChange={(e) => setstudent_phone(e.target.value)}
                     placeholder="Phone Number"
+                    pattern="^[6-9]\d{9}$"
+                    title="Enter a valid Phone Number"
                   />
                   <label for="student_phone">Phone Number</label>
                 </div>
@@ -204,6 +206,8 @@ export default function UpdateStudent() {
                     value={student_email}
                     onChange={(e) => setstudent_email(e.target.value)}
                     placeholder="Email"
+                    pattern="^[a-zA-Z0-9_-]+@[a-z]+\.[a-z]{2,}$"
+                    title="Enter a valid email address"
                   />
                   <label for="student_email">Student Email</label>
                 </div>

@@ -8,19 +8,33 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import PulseLoader from "react-spinners/PulseLoader"; 
 
 export default function ViewCertificate() {
 
     var [certificates, setcertificates] = useState([])
-
+    const [loading, setLoading] = useState(true); 
     const getData = () => {
-        ApiServices.manageCertificate({ status: true })
+        setLoading(true);
+        ApiServices.manageCertificate({ })
             .then((res) => {
-                setcertificates(res.data.data)
+                var sessionId = sessionStorage.getItem("_id")
+                const allCertificates = res.data.data;
+                // Filter certificates where studentId._id matches logged-in userId
+                const filteredCertificates = allCertificates.filter(
+                (cert) => cert.studentId?.userId === sessionId
+                );
+                setcertificates(filteredCertificates);
+                console.log("filteredCertificates",filteredCertificates);
+                
+                // setLoading(false);
             })
             .catch((err) => {
                 console.log("error is", err);
             })
+            .finally(() => {
+                setLoading(false); // ✅ Stop loader
+            });
     }
 
     useEffect(() => {
@@ -103,36 +117,53 @@ export default function ViewCertificate() {
             {/* /Hero Section */}
             <div className="container  py-5 my-5">
                 <div className="table-responsive" data-aos-delay={500}>
-                    <table className="table table-bordered">
-                        <thead className="table-dark text-uppercase text-center">
-                            <tr>
-                                <th>Sr.No</th>
-                                <th>Student Name <br /> <small>(Email)</small></th>
-                                <th>Description</th>
-                                <th>Enrollment Year</th>
-                                <th>Attachment</th>
-                                <th>Department</th>
-                                <th>Course</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {certificates?.map((el, index) => (
-                                <tr key={index} className="text-center">
-                                    <td>{index + 1}</td>
-                                    <td>{el?.studentId?.name} <br /> <small>{el?.studentId?.email}</small> </td>
-                                    <td>{el?.description}</td>
-                                    <td>{el?.studentId?.enrollment_year}</td>
-                                    <td>
-                                        {el?.image != "no_image.jpg" ? <><a href={el?.image} className="btn btn-dark" target="_blank">View</a> </> : <></>}
-                                    </td>
-                                    <td>{el?.departmentId?.dept_name}</td>
-                                    <td>{el?.courseId?.course_name} <br /> <small>({el?.courseId?.course_code})</small></td>
-                                    <td><p style={{ fontWeight: "bolder", fontSize: "15px" }}>{el?.requestStatus}</p></td>
+                    {
+                       loading ? (
+                        <div className="text-center text-muted fs-4" style={{ height: "200px" }}>
+                            {/* <PulseLoader color="#36d7b7" size={15} /> */}
+                            <PulseLoader color="#3fb2d1" size={15} loading={loading}/> {/* Bootstrap primary color */}
+                        </div>
+                    ) : (
+                       certificates.length===0?
+                       (
+                        <div className="text-center text-muted fs-4">No certificates found</div>
+                       ) :
+                       (
+                        // <table className="table table-bordered">
+                        <table className="table  table-hover" style={{cursor:"pointer"}}>
+
+                            <thead className="table text-uppercase text-center">
+                                <tr>
+                                    <th>Sr.No</th>
+                                    <th>Student Name <br /> <small>(Email)</small></th>
+                                    <th>Description</th>
+                                    <th>Enrollment Year</th>
+                                    <th>Attachment</th>
+                                    <th>Department</th>
+                                    <th>Course</th>
+                                    <th>Status</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {certificates?.map((el, index) => (
+                                    <tr key={index} className="text-center">
+                                        <td>{index + 1}</td>
+                                        <td>{el?.studentId?.name} <br /> <small>{el?.studentId?.email}</small> </td>
+                                        <td>{el?.description}</td>
+                                        <td>{el?.studentId?.enrollment_year}</td>
+                                        <td>
+                                            {el?.image != "no_image.jpg" ? <><a href={el?.image} className="btn btn-dark" target="_blank">View</a> </> : <></>}
+                                        </td>
+                                        <td>{el?.departmentId?.dept_name}</td>
+                                        <td>{el?.courseId?.course_name} <br /> <small>({el?.courseId?.course_code})</small></td>
+                                        <td><p style={{ fontWeight: "bolder", fontSize: "15px" }}>{el?.requestStatus}</p></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>  
+                        )
+                    )
+                    }
                 </div>
             </div>
         </main>

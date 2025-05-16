@@ -4,9 +4,11 @@ import "react-toastify/dist/ReactToastify.css";
 import PageHeader from "./HodPageHeader";
 import { Link } from "react-router-dom";
 import ApiServices from "../ApiServices";
+import PulseLoader from "react-spinners/PulseLoader"; 
 
 export default function HodDept() {
   var [departments, setDepartments] = useState([])
+  const [loading, setLoading] = useState(true); 
 
   const getData = () => {
     ApiServices.manageDepartment({ status: true })
@@ -18,6 +20,9 @@ export default function HodDept() {
       .catch((err) => {
         console.log("error is", err);
       })
+      .finally(() => {
+        setLoading(false); // ✅ Stop loader
+      });
   }
 
   useEffect(() => {
@@ -39,6 +44,13 @@ export default function HodDept() {
       {/* /Hero Section */}
       <div className="container  py-5 my-5">
         <div className="table-responsive" data-aos-delay={500}>
+          {
+            loading ? (
+              <div className="text-center text-muted fs-4" style={{ height: "200px" }}>
+              {/* <PulseLoader color="#36d7b7" size={15} /> */}
+              <PulseLoader color="#3fb2d1" size={15} loading={loading}/> {/* Bootstrap primary color */}
+              </div>
+            ) : (
           <table className="table table-bordered">
             <thead className="table-dark text-uppercase text-center">
               <tr>
@@ -57,6 +69,9 @@ export default function HodDept() {
               ))}
             </tbody>
           </table>
+           
+            )
+          }
         </div>
       </div>
     </main>

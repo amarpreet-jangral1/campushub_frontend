@@ -1,80 +1,3 @@
-// import { motion } from "framer-motion";
-// import { useEffect, useState } from "react";
-// import ApiServices from "../ApiServices";
-
-// export default function ManageProfile() {
-//     var [profiledata, setProfiledata] = useState([])
-
-//     const getData = () => {
-//         ApiServices.studentProfile()
-//             .then((res) => {
-//                 setProfiledata(res.data.data)
-//             })
-//             .catch((err) => {
-//                 console.log("error is", err);
-//             })
-//     }
-
-//     useEffect(() => {
-//         getData()
-//     }, [])
-
-
-//     return (
-//         <>
-//             {/* HOD Profile Section Start */}
-//             <div className="container-xxl py-5">
-//                 <div className="container">
-//                     <div className="text-center mb-5">
-//                         <h6 className="section-title bg-white text-center text-primary px-3">
-//                             Profile
-//                         </h6>
-//                         <h1 className="mb-4">Student Profile</h1>
-//                     </div>
-
-//                     <div className="row align-items-center g-5">
-//                         <div className="col-md-4 pb-5 d-flex justify-content-center">
-//                             <motion.div
-//                                 whileHover={{ scale: 1.05 }}
-//                                 transition={{ type: "spring", stiffness: 300 }}
-//                                 style={{
-//                                     borderRadius: "1.5rem",
-//                                     overflow: "hidden",
-//                                     boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)",
-//                                     width: "250px",
-//                                     height: "350px",
-//                                 }}
-//                             >
-//                                 <img
-//                                     src={profiledata?.image}
-//                                     alt="HOD"
-//                                     style={{
-//                                         width: "100%",
-//                                         height: "100%",
-//                                         objectFit: "cover",
-//                                     }}
-//                                 />
-//                             </motion.div>
-//                         </div>
-//                         <div className="col-lg-8">
-//                             <h3 className="mb-3">{profiledata?.name} </h3>
-//                             <p><strong>Department:</strong> {profiledata?.departmentId?.dept_name}</p>
-//                             <p><strong>Course:</strong> {profiledata?.courseId?.course_name} <small>({profiledata?.courseId?.course_code})</small></p>
-//                             <p><strong>Email:</strong> {profiledata?.email}</p>
-//                             <p><strong>Phone:</strong> {profiledata?.contact}</p>
-//                             <p><strong>Gender:</strong> {profiledata?.gender}</p>
-//                             <p><strong>Enrollment Year:</strong> {profiledata?.enrollment_year}</p>
-
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//             {/* HOD Profile Section End */}
-//         </>
-//     )
-// }
-
-
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -208,7 +131,7 @@ export default function ManageProfile() {
       {/* Modal */}
       {showModal && (
         <div className="modal d-block" tabIndex="-1" style={{ background: "rgba(0,0,0,0.5)" }}>
-          <div className="modal-dialog">
+          <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content p-3">
               <div className="modal-header">
                 <h5 className="modal-title">Update Profile</h5>
@@ -222,11 +145,15 @@ export default function ManageProfile() {
                   </div>
                   <div className="mb-3">
                     <label>Email</label>
-                    <input type="email" name="email" className="form-control" value={updatedData.email} onChange={handleInputChange} />
+                    <input type="email" name="email" className="form-control" value={updatedData.email} onChange={handleInputChange} 
+                    pattern="^[a-zA-Z0-9_-]+@[a-z]+\.[a-z]{2,}$"
+                    title="Enter a valid email address"/>
                   </div>
                   <div className="mb-3">
                     <label>Contact</label>
-                    <input type="text" name="contact" className="form-control" value={updatedData.contact} onChange={handleInputChange} />
+                    <input type="text" name="contact" className="form-control" value={updatedData.contact} onChange={handleInputChange}
+                    pattern="^[6-9]\d{9}$"
+                    title="Enter a valid Contact Number"/>
                   </div>
                   <div className="mb-3">
                     <label>Gender</label>

@@ -4,10 +4,15 @@ import PageHeader from "./PageHeader";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import dayjs from "dayjs";
+import PulseLoader from "react-spinners/PulseLoader"; 
+
 export default function AllPayments(){
   var[payment, setpayment]=useState([])
+  const [loading, setLoading] = useState(true); 
 
   const getpayment=()=>{
+  setLoading(true);
+
     axios.post("http://localhost:9000/apis/payment/getall",{},{headers: { Authorization: sessionStorage.getItem("token") }})
     .then((res)=>{
       console.log("payments data is",res);
@@ -17,6 +22,9 @@ export default function AllPayments(){
       console.log("error is",err);
       
     })
+    .finally(() => {
+        setLoading(false); // ✅ Stop loader
+    });
   }
 useEffect(() => {
 getpayment()
@@ -34,6 +42,13 @@ getpayment()
         {/* /Hero Section */}
         <div className="container  py-5 my-5">
             <div className="table-responsive"  data-aos-delay={500}>
+            {
+            loading ? (
+              <div className="text-center text-muted fs-4" style={{ height: "200px" }}>
+              {/* <PulseLoader color="#36d7b7" size={15} /> */}
+              <PulseLoader color="#3fb2d1" size={15} loading={loading}/> {/* Bootstrap primary color */}
+              </div>
+            ) : (
             <table className="table table-bordered  table-hover" style={{cursor:"pointer"}}>
             <thead className="table-dark text-uppercase text-center">
               <tr>
@@ -65,6 +80,9 @@ getpayment()
               ))}
             </tbody>
           </table>
+           
+            )
+          }
         </div>
         </div>
       </main>

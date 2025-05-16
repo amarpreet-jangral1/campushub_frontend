@@ -133,6 +133,9 @@ class ApiServices {
         return axios.post(BASE_URL + "apis/certificate/add", data, { headers: this.getToken() });
     }
 
+    // manageCertificate(data) {
+    //     return axios.post(BASE_URL + "apis/certificate/getall", data, { headers: this.getToken() });
+    // }
     manageCertificate(data) {
         return axios.post(BASE_URL + "apis/certificate/getall", data, { headers: this.getToken() });
     }

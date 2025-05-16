@@ -3,10 +3,13 @@ import "react-toastify/dist/ReactToastify.css";
 import PageHeader from "../AdminPages/PageHeader";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
+import PulseLoader from "react-spinners/PulseLoader"; 
 import dayjs from "dayjs";
 export default function PaymentHistory(){
-  var[payment, setpayment]=useState([])
-  const getpayment=()=>{
+    var[payment, setpayment]=useState([])
+    const [loading, setLoading] = useState(true); 
+    const getpayment=()=>{
+    setLoading(true);
     axios.post("http://localhost:9000/apis/payment/getall",{},{headers: { Authorization: sessionStorage.getItem("token") }})
     .then((res)=>{
     console.log("res of all payments is",res);
@@ -18,13 +21,14 @@ export default function PaymentHistory(){
     );
     console.log("Filtered user payments are", filteredPayments);
       setpayment(filteredPayments);
-
-    
     })
     .catch((err)=>{
       console.log("error is",err);
       
     })
+    .finally(() => {
+    setLoading(false); // ✅ Stop loader
+    });
   }
 useEffect(() => {
 getpayment()
@@ -41,6 +45,12 @@ getpayment()
         <div className="container  py-5 my-5">
             <div className="table-responsive"  data-aos-delay={500}>
             {
+              loading ? (
+                <div className="text-center text-muted fs-4" style={{ height: "200px" }}>
+                {/* <PulseLoader color="#36d7b7" size={15} /> */}
+                <PulseLoader color="#3fb2d1" size={15} loading={loading}/> {/* Bootstrap primary color */}
+                </div>
+              ) : (
               payment.length===0 ? (
                 <div className="text-center text-muted fs-4">No Payment Yet</div>
               ):(
@@ -73,6 +83,7 @@ getpayment()
           </table>
 
               )
+            )
             }
         </div>
         </div>
