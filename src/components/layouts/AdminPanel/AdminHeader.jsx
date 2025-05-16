@@ -35,6 +35,7 @@ export default function AdminHeader() {
 
   function handleLogout() {
     closeModal();
+    sessionStorage.clear()
     navigate("/"); // Redirect to homepage after logout
   }
   return (

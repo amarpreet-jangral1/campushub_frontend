@@ -54,10 +54,9 @@ getpayment()
               payment.length===0 ? (
                 <div className="text-center text-muted fs-4">No Payment Yet</div>
               ):(
-            <table className="table  table-hover" style={{cursor:"pointer"}}>
-            {/* <table className="table table-bordered  table-hover" style={{cursor:"pointer"}}> */}
-            <thead className="table text-uppercase text-center">
-            {/* <thead className="table-dark text-uppercase text-center"> */}
+            <table className="table  table-bordered table-hover" style={{cursor:"pointer"}}>
+            {/* <thead className="table text-uppercase text-center"> */}
+            <thead className="table-dark text-uppercase text-center">
               <tr>
                 <th>Sr No.</th>
                 <th>Email</th>

@@ -36,6 +36,7 @@ export default function HodHeader() {
 
   function handleLogout() {
     closeModal();
+    sessionStorage.clear()
     navigate("/"); // Redirect to homepage after logout
   }
   return (

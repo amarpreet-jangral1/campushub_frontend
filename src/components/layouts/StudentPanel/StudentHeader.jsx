@@ -34,8 +34,9 @@ export default function StudentHeader() {
     setIsOpen(false);
   }
 
-  function handleLogout() {
+  function handleLogout() {a
     closeModal();
+    sessionStorage.clear()
     navigate("/login"); // Redirect to homepage after logout
   }
   return (
