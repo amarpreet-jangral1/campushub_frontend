@@ -7,6 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; 
 import axios from "axios";
 import { PulseLoader } from 'react-spinners';
+import ApiServices from '../ApiServices';
 
 export default function Payment() {
     const [sem, setsem] = useState("");
@@ -17,7 +18,12 @@ export default function Payment() {
     const getData = () => {
     const student_id = sessionStorage.getItem("_id"); 
     console.log("✅ ID in sessionStorage:", student_id);
-    axios.post("http://localhost:9000/apis/students/getStudentByUserId", { userId: student_id },{headers:{Authorization:sessionStorage.getItem("token")}})
+    // axios.post("http://localhost:9000/apis/students/getStudentByUserId", { userId: student_id },{headers:{Authorization:sessionStorage.getItem("token")}})
+        // let data={
+        //     userId: student_id
+        // }
+    ApiServices.studentbyuserid({ userId: student_id})    
+
     .then((res) => {
         console.log("data of single student is",res);
         setstudents(res.data.data)
@@ -39,8 +45,11 @@ export default function Payment() {
             amount: amount,
             sessionId: sessionStorage.getItem("_id")
         };
-        axios.post("http://localhost:9000/apis/payment/pay", data , {headers:{Authorization:sessionStorage.getItem("token")}})
-            .then((res) => {
+        // axios.post("http://localhost:9000/apis/payment/pay", data , {headers:{Authorization:sessionStorage.getItem("token")}})
+        ApiServices.payment(data) 
+        // ApiServices.manageDepartment({ status: true })
+        
+        .then((res) => {
                 console.log("Response from API:", res);
                 const order = res.data.order;
                 const options = {
@@ -143,7 +152,7 @@ export default function Payment() {
                 <div
                     className="position-absolute w-100 h-100 d-flex justify-content-center align-items-center"
                     style={{
-                        backdropFilter: "blur(5px)",
+                        backdropFilter: "blur(1px)",
                         backgroundColor: "rgba(255, 255, 255, 0.5)",
                         zIndex: 1000,
                         borderRadius: "0.75rem",

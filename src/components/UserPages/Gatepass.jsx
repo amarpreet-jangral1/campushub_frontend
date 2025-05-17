@@ -8,6 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import ApiServices from '../ApiServices';
+import { PulseLoader } from 'react-spinners';
 
 
 export default function Gatepass() {
@@ -29,8 +30,6 @@ export default function Gatepass() {
     ApiServices.addGatepass(data)
       .then((res) => {
         // console.log(res.data)
-
-        setLoading(false);
         if (res.data.success) {
           toast.success(res.data.message, {
             position: "top-center",
@@ -58,7 +57,9 @@ export default function Gatepass() {
     //         theme: "colored",
     //     });
     // });
-
+          setTimeout(() => {
+            setLoading(false);
+          }, 2500);
   };
 
   return (
@@ -116,6 +117,19 @@ export default function Gatepass() {
       <div className="d-flex justify-content-center align-items-center min-vh-100">
         <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "500px", width: "100%" }}>
           <h2 className="text-center text-primary">Apply Gatepass</h2>
+          {loading && (
+          <div
+            className="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              backdropFilter: "blur(1px)",
+              zIndex: 2,
+              borderRadius: "20px",
+            }}
+          >
+            <PulseLoader color="#3fb2d1" size={12} loading={loading}/>
+          </div>
+        )}
           <form onSubmit={handleForm} className="py-4">
             <div className="form-floating mb-4">
               <textarea

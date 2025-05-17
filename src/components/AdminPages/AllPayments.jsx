@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import dayjs from "dayjs";
 import PulseLoader from "react-spinners/PulseLoader"; 
+import ApiServices from "../ApiServices";
 
 export default function AllPayments(){
   var[payment, setpayment]=useState([])
@@ -13,7 +14,8 @@ export default function AllPayments(){
   const getpayment=()=>{
   setLoading(true);
 
-    axios.post("http://localhost:9000/apis/payment/getall",{},{headers: { Authorization: sessionStorage.getItem("token") }})
+    // axios.post("http://localhost:9000/apis/payment/getall",{},{headers: { Authorization: sessionStorage.getItem("token") }})
+    ApiServices.allpayment()
     .then((res)=>{
       console.log("payments data is",res);
       setpayment(res.data.data)

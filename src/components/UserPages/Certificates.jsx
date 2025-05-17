@@ -8,6 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import ApiServices from '../ApiServices';
+import { PulseLoader } from "react-spinners";
 
 export default function Certificates() {
     const [description, setdescription] = useState("");
@@ -20,18 +21,15 @@ export default function Certificates() {
         let data = {
             description: description
         };
-
         ApiServices.addCertificate(data)
             .then((res) => {
                 // console.log(res.data)
-                setLoading(false);
                 if (res.data.success) {
                     toast.success(res.data.message, {
                         position: "top-center",
                         autoClose: 2000,
                         theme: "colored",
                     });
-
                     setdescription("");
                 } else {
                     toast.error(res.data.message, {
@@ -49,7 +47,9 @@ export default function Certificates() {
             //         theme: "colored",
             //     });
             // });
-
+            setTimeout(() => {
+              setLoading(false);
+            }, 2500);      
     };
 
     return (
@@ -108,6 +108,19 @@ export default function Certificates() {
             <div className="d-flex justify-content-center align-items-center min-vh-100">
                 <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "500px", width: "100%" }}>
                     <h2 className="text-center text-primary">Apply Certificate</h2>
+        {loading && (
+          <div
+            className="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              backdropFilter: "blur(1px)",
+              zIndex: 2,
+              borderRadius: "20px",
+            }}
+          >
+            <PulseLoader color="#3fb2d1" size={12} loading={loading}/>
+          </div>
+        )}
                     <form onSubmit={handleForm} className="py-4">
                         <div className="form-floating mb-4">
                             <textarea

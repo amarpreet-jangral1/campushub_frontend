@@ -5,12 +5,14 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import PulseLoader from "react-spinners/PulseLoader"; 
 import dayjs from "dayjs";
+import ApiServices from "../ApiServices";
 export default function PaymentHistory(){
     var[payment, setpayment]=useState([])
     const [loading, setLoading] = useState(true); 
     const getpayment=()=>{
     setLoading(true);
-    axios.post("http://localhost:9000/apis/payment/getall",{},{headers: { Authorization: sessionStorage.getItem("token") }})
+    // axios.post("http://localhost:9000/apis/payment/getall",{},{headers: { Authorization: sessionStorage.getItem("token") }})
+    ApiServices.allpayment()
     .then((res)=>{
     console.log("res of all payments is",res);
     const allPayments = res.data.data;

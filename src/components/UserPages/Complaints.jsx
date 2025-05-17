@@ -4,12 +4,12 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import "react-toastify/dist/ReactToastify.css";
 
-
 import { useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ApiServices from '../ApiServices';
 import { useNavigate } from 'react-router-dom';
+import { PulseLoader } from 'react-spinners';
 
 export default function Complaints() {
   // State variables
@@ -18,9 +18,12 @@ export default function Complaints() {
   const [image, setimage] = useState("");
   const fileInputRef = useRef(null);
   const nav = useNavigate()
+  const [loading, setLoading] = useState(false);
 
   function HandleForm(e) {
     e.preventDefault();
+    setLoading(true); // Set loading state to true when form is being submitted 
+
     let data = new FormData()
     data.append("complaintRegarding", complaintRegarding)
     data.append("complaintDescription", complaintDescription)
@@ -39,8 +42,8 @@ export default function Complaints() {
 
           nav("/student/viewcomplaints")
           // Clear input fields
-          complaintRegarding("");
-          complaintDescription("");
+          setcomplaintRegarding("");
+          setcomplaintDescription("");
           setimage(null);
           // Clear file input
           if (fileInputRef.current) {
@@ -58,6 +61,9 @@ export default function Complaints() {
 
         }
       })
+      setTimeout(() => {
+        setLoading(false);
+      }, 2500);
   }
 
 
@@ -117,7 +123,19 @@ export default function Complaints() {
       <div className="d-flex justify-content-center align-items-center min-vh-100  py-5" >
         <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "500px", width: "100%" }}>
           <h2 className="text-center text-primary">Add Complaint</h2>
-
+        {loading && (
+          <div
+            className="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              backdropFilter: "blur(1px)",
+              zIndex: 2,
+              borderRadius: "20px",
+            }}
+          >
+            <PulseLoader color="#3fb2d1" size={12} loading={loading}/>
+          </div>
+        )}
           <form onSubmit={HandleForm}
             className="py-4">
             {/* <div className="form-floating mb-3">
@@ -164,7 +182,6 @@ export default function Complaints() {
                 ref={fileInputRef}
                 onChange={(e) => { setimage(e.target.files[0]) }}
                 placeholder="image"
-                required
               />
             </div>
 

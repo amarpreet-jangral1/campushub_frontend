@@ -180,6 +180,17 @@ class ApiServices {
         return axios.post(BASE_URL + "apis/user/changepassword", data, { headers: this.getToken() });
     }
     
+
+    //payments
+    payment(data){
+        return axios.post(BASE_URL + "apis/payment/pay", data, { headers: this.getToken() });
+    }
+    studentbyuserid(data){
+        return axios.post(BASE_URL + "apis/students/getStudentByUserId", data, { headers: this.getToken() });
+    }
+    allpayment(){
+        return axios.post(BASE_URL + "apis/payment/getall", {},{ headers: this.getToken() });
+    }
 }
 
 export default new ApiServices;

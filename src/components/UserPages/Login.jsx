@@ -6,11 +6,13 @@ import "aos/dist/aos.css";
 import "react-toastify/dist/ReactToastify.css";
 // import axios from "axios";
 import ApiServices from "../ApiServices";
+import { PulseLoader } from "react-spinners";
 
 export default function Login() {
 
   var [Username, setUsername] = useState("");//usestate hook
   var [Password, setPassword] = useState("");//usestate hook
+  const [loading, setLoading] = useState(false);
 
   var nav = useNavigate()
   useEffect(() => {
@@ -19,6 +21,8 @@ export default function Login() {
 
   function HandleForm(e) {
     e.preventDefault()
+    setLoading(true); // Set loading state to true when form is being submitted 
+    
     // console.log("form submit");
     let data = {
       email: Username,
@@ -87,6 +91,9 @@ export default function Login() {
           theme: "colored",
         });
       })
+      setTimeout(() => {
+        setLoading(false);
+      }, 2500);   
 
   }
 
@@ -117,6 +124,19 @@ export default function Login() {
           backdropFilter: "blur(8px)",
         }}
       >
+        {loading && (
+          <div
+            className="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              backdropFilter: "blur(1px)",
+              zIndex: 2,
+              borderRadius: "20px",
+            }}
+          >
+            <PulseLoader color="#3fb2d1" size={12} loading={loading}/>
+          </div>
+        )}
         <form onSubmit={HandleForm}>
           <h3 className="mb-4 fw-semibold text-center text-black">Login</h3>
           <div className="mb-4">
