@@ -117,7 +117,7 @@ export default function ManageGatePass() {
                     </table>
           
             )
-          }a
+          }
                 </div>
             </div>
         </main>

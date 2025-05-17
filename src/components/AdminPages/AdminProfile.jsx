@@ -193,7 +193,7 @@ export default function AdminProfile() {
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content p-3">
                             <div className="modal-header">
-                                <h5 className="modal-title text-primary text-center w-100">CHANGE PASSWORD</h5>
+                                <h5 className="modal-title text-primary text-center w-100">Change Password</h5>
                                 <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
                             </div>
                             <form onSubmit={handleFormSubmit}>
