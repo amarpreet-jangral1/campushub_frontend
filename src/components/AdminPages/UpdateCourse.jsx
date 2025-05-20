@@ -5,11 +5,13 @@ import PageHeader from "./PageHeader";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import ApiServices from "../ApiServices";
+import { PulseLoader } from "react-spinners";
 
 export default function UpdateCourse() {
     var [course_name, setcourse_name] = useState("");
     var [Dept_id, set_deptid] = useState("");
     var [course_code, setcourse_code] = useState("");
+  const [loading, setLoading] = useState(false); 
 
     const params = useParams()
     const course_id = params.id
@@ -48,7 +50,7 @@ export default function UpdateCourse() {
 
     function HandleForm(e) {
         e.preventDefault();
-
+setLoading(true)
         let data = {
             course_name: course_name,
             Dept_id: Dept_id,
@@ -75,6 +77,9 @@ export default function UpdateCourse() {
                 setLoad(false)
                 toast.error("Something went wrong!!")
             })
+            .finally(()=>{
+                setLoading(false)
+            })
 
     }
 
@@ -85,9 +90,24 @@ export default function UpdateCourse() {
                 title="Update Courses"
             // quote="Knowledge is the path to success"
             />
+            <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 
-            <div className="d-flex justify-content-center align-items-center min-vh-100">
-                <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "450px", width: "100%" }}>
+            <div className="d-flex justify-content-center align-items-center position-relative min-vh-100" >
+        {loading && (
+          <div
+            className="position-absolute w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              backdropFilter: "blur(1px)",
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              zIndex: 1000,
+              borderRadius: "0.75rem",
+            }}
+          >
+            <PulseLoader color="#3fb2d1" size={15} /> {/* Bootstrap primary color */}
+          </div>
+        )}
+                <div className="card shadow-lg p-4 rounded-3" 
+                style={{ maxWidth: "450px", width: "100%" }}>
                     <h2 className="text-center text-primary ">Update Course</h2>
 
                     <form onSubmit={HandleForm}

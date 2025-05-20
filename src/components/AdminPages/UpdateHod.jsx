@@ -6,6 +6,7 @@ import PageHeader from "./PageHeader";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import ApiServices from "../ApiServices";
+import { PulseLoader } from "react-spinners";
 export default function UpdateHod() {
     const [name, setName] = useState("");
     const [dept_name, setdept_name] = useState("");
@@ -14,6 +15,7 @@ export default function UpdateHod() {
     const [contact, setContact] = useState("");
     const [address, setAddress] = useState("");
     const [image, setimage] = useState("");
+    const [loading,setLoading]=useState(false)
     const fileInputRef = useRef(null);
     const params = useParams()
     const hodid = params.id
@@ -36,10 +38,11 @@ export default function UpdateHod() {
         ApiServices.getSingleHod({ _id: hodid })
         .then((res) => {
             console.log("Single api called",res);
-            console.log("Singleeee",res.data.data);
+            // console.log("Singleeee",res.data.data);
 
             setName(res.data.data.name)
-            setdept_name(res.data.data.departmentId.dept_name)
+            // setdept_name(res.data.data.address)
+            setdept_name(res.data.data.departmentId._id)
             setEmail(res.data.data.email)
             setQualification(res.data.data.qualification)
             setContact(res.data.data.contact)
@@ -55,27 +58,10 @@ export default function UpdateHod() {
         gethodsingledata()
     }, [])
 
-    // useEffect(() => {
-    //     ApiServices.getSingleHod({ _id: hodid })
-    //         .then((res) => {
-    //             // console.log("Single api called", res.data.data);
-
-    //             setName(res.data.data.name)
-    //             setdept_name(res.data.data.departmentId.dept_name)
-    //             setEmail(res.data.data.email)
-    //             setContact(res.data.data.contact)
-    //             setAddress(res.data.data.address)
-    //             setimage(res.data.data.image)
-    //             setQualification(res.data.data.qualification)
-    //         })
-    //         .catch((err) => {
-    //             toast.error("Something went wrong!!")
-    //         })
-    // }, [])
-
+    
     function HandleForm(e) {
         e.preventDefault();
-
+        setLoading(true)
         let data = new FormData()
         data.append("name", name)
         data.append("departmentId", dept_name)
@@ -83,17 +69,21 @@ export default function UpdateHod() {
         data.append("qualification", qualification)
         data.append("contact", contact)
         data.append("address", address)
+        data.append("_id", hodid)
         if (image)
             data.append("image", image)
 
-        data.append("_id", hodid)
-
         ApiServices.updateHod(data)
             .then((res) => {
+            console.log("handle form res",res);
 
                 if (res.data.success) {
                     // setLoad(false)
-                    toast.success(res.data.message)
+                     toast.success(res.data.message, {
+                        position: "top-center",
+                        autoClose: 2000,
+                        theme: "colored",
+                    });
                     // Clear input fields
                     setName("");
                     setdept_name("");
@@ -105,11 +95,17 @@ export default function UpdateHod() {
                     if (fileInputRef.current) {
                         fileInputRef.current.value = "";
                     }
-                    nav("/admin/hod_manage")
+                    setTimeout(() => 
+                        nav("/admin/hod_manage"), 2000
+                    );
                 }
                 else {
                     // setLoad(false)
-                    toast.error(res.data.message)
+                     toast.error(res.data.message, {
+                        position: "top-center",
+                        autoClose: 2000,
+                        theme: "colored",
+                    });
                 }
 
             })
@@ -118,6 +114,9 @@ export default function UpdateHod() {
                 // console.log("err is", err);
                 toast.error("Something went wrong!!")
 
+            })
+            .finally(()=>{
+                setLoading(false)
             })
 
     }
@@ -130,7 +129,20 @@ export default function UpdateHod() {
             />
             <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 
-            <div className="d-flex justify-content-center align-items-center min-vh-100">
+            <div className="d-flex justify-content-center align-items-center " style={{ minHeight: "110vh" }}>
+        {loading && (
+          <div
+            className="position-absolute w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              backdropFilter: "blur(1px)",
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              zIndex: 1000,
+              borderRadius: "0.75rem",
+            }}
+          >
+            <PulseLoader color="#3fb2d1" size={15} /> {/* Bootstrap primary color */}
+          </div>
+        )}
                 <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "1000px", width: "100%" }}>
                     <h2 className="text-center text-primary">Update HOD</h2>
                     <form onSubmit={HandleForm}
@@ -156,7 +168,7 @@ export default function UpdateHod() {
                                         onChange={(e) => setdept_name(e.target.value)}
                                         placeholder="Department_name"
                                     >
-                                        <option value="" selected disabled>Select Department</option>
+                                        <option value=""  disabled>Select Department</option>
                                         {departments.map((el, index) => (
                                             <option key={index} value={el?._id}>{el.dept_name}</option>
                                         ))}

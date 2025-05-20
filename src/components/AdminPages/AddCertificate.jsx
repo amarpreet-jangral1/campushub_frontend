@@ -68,7 +68,7 @@ export default function AddCertificate() {
           <div
             className="position-absolute w-100 h-100 d-flex justify-content-center align-items-center"
             style={{
-              backdropFilter: "blur(5px)",
+              backdropFilter: "blur(1px)",
               backgroundColor: "rgba(255, 255, 255, 0.5)",
               zIndex: 1000,
               borderRadius: "0.75rem",

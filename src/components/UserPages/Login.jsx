@@ -94,6 +94,8 @@ export default function Login() {
       setTimeout(() => {
         setLoading(false);
       }, 2500);   
+      setUsername(""),
+      setPassword("")
 
   }
 

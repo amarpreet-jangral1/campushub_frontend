@@ -163,7 +163,7 @@ export default function Payment() {
             )}
 
             {/* Payment Form Section */}
-            <div className="d-flex justify-content-center align-items-center min-vh-100">
+            <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
                 <div className="card shadow-lg p-4 my-5 rounded-3" style={{ maxWidth: "500px", width: "100%" }}>
                     <h2 className="text-center text-primary">Payment Here</h2>
                     <form onSubmit={handleForm} className="py-4">

@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import ApiServices from "../ApiServices";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function HodProfile() {
   const [profiledata, setProfiledata] = useState({});
   const [showModal, setShowModal] = useState(false);
+    const nav = useNavigate();
+
   const [updatedData, setUpdatedData] = useState({
     name: "",
     department: "",
@@ -74,7 +77,24 @@ export default function HodProfile() {
         console.error("Update error", err);
       });
   };
-
+function handleLogout() {
+  console.log("handle logout calls");
+  
+    sessionStorage.clear()
+    toast.success("Logout successfully !!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+     setTimeout(() => {
+        nav("/login")
+      }, 2500);   // Redirect to homepage after logout
+  }
   return (
     <>
       {/* HOD Profile Section Start */}
@@ -88,6 +108,8 @@ export default function HodProfile() {
           </div>
 
           <div className="row align-items-center g-5">
+      <ToastContainer  />
+            
             <div className="col-md-4 pb-5 d-flex justify-content-center">
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -121,14 +143,17 @@ export default function HodProfile() {
 
               <div className="d-flex gap-3 mt-3">
                 <button
-                  className="btn btn-primary px-4 py-2"a
+                  className="btn btn-primary  mt-3"
                   onClick={() => setShowModal(true)}
                 >
                   Update Profile
                 </button>
-                <Link to="/hod/changepassword" className="btn btn-warning px-4 py-2">
+                <Link to="/hod/changepassword" className="btn btn-warning  mt-3">
                   Change Password
                 </Link>
+                <button className="btn btn-danger text-white mt-3" onClick={handleLogout}>
+                    Logout
+                </button>
               </div>
             </div>
           </div>

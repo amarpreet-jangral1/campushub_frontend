@@ -162,7 +162,24 @@ export default function AdminProfile() {
                 console.error(err);
             });
     };
-
+function handleLogout() {
+  console.log("handle logout calls");
+  
+    sessionStorage.clear()
+    toast.success("Logout successfully !!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+     setTimeout(() => {
+        nav("/login")
+      }, 2500);   // Redirect to homepage after logout
+  }
     return (
         <main className="main">
             <PageHeader backgroundImage="/assets/img/photo21.jpg" title="Profile" />
@@ -182,9 +199,14 @@ export default function AdminProfile() {
                             </tr>
                         </tbody>
                     </table>
+                    <div className="d-flex gap-3 mt-3">
                     <button className="btn btn-dark mt-3" onClick={() => setShowModal(true)}>
                         Change Password
                     </button>
+                    <button className="btn btn-danger text-white mt-3" onClick={handleLogout}>
+                        Logout
+                    </button>
+                    </div>
                 </div>
             </div>
 

@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PageHeader from "./PageHeader";
 import axios from "axios";
 import ApiServices from "../ApiServices";
+import { PulseLoader } from "react-spinners";
 
 export default function AddStudent() {
     // State variables
@@ -22,6 +23,8 @@ export default function AddStudent() {
 
     var [departments, setDepartments] = useState([])
     var [courses, setCourses] = useState([])
+    const [loading, setLoading] = useState(false);
+
     const getDepartmentData = () => {
         ApiServices.manageDepartment({ status: true })
             .then((res) => {
@@ -51,6 +54,8 @@ export default function AddStudent() {
 
     function HandleForm(e) {
         e.preventDefault();
+    setLoading(true);
+
         let data = new FormData()
         data.append("name", student_name)
         data.append("email", student_email)
@@ -98,6 +103,9 @@ export default function AddStudent() {
 
                 }
             })
+            .finally(()=>{
+                setLoading(false);
+            })
     }
 
 
@@ -110,10 +118,22 @@ export default function AddStudent() {
             //  quote="Knowledge is the path to success"
             />
             <ToastContainer position="top-center" autoClose={2000} theme="colored" />
-            <div className="d-flex justify-content-center align-items-center min-vh-100  py-5" >
+            <div className="d-flex justify-content-center align-items-center   py-5" style={{ minHeight: "120vh" }} >
+         {loading && (
+          <div
+            className="position-absolute w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              backdropFilter: "blur(1px)",
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              zIndex: 1000,
+              borderRadius: "0.75rem",
+            }}
+          >
+            <PulseLoader color="#3fb2d1" size={15} /> {/* Bootstrap primary color */}
+          </div>
+        )}
                 <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "1000px", width: "100%" }}>
                     <h2 className="text-center text-primary">Add Student</h2>
-
                     <form onSubmit={HandleForm}
                         className="py-4">
                         <div className="row">

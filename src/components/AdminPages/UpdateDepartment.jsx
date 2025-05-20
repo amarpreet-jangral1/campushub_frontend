@@ -50,7 +50,10 @@ export default function UpdateDepartment() {
             theme: "colored",
           });
           // setDeptName("");
-          nav("/admin/department_manage")
+           setTimeout(() => 
+            nav("/admin/department_manage"), 2000
+        );
+          
         } else {
           toast.error(res.data.message, {
             position: "top-center",
@@ -79,21 +82,21 @@ export default function UpdateDepartment() {
       <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 
       <div
-        className="d-flex justify-content-center align-items-center min-vh-100 position-relative"
+        className="d-flex justify-content-center align-items-center position-relative" style={{ minHeight: "70vh" }}
       >
-        {loading ? (
+        {loading && (
           <div
             className="position-absolute w-100 h-100 d-flex justify-content-center align-items-center"
             style={{
-              backdropFilter: "blur(5px)",
+              backdropFilter: "blur(1px)",
               backgroundColor: "rgba(255, 255, 255, 0.5)",
               zIndex: 1000,
               borderRadius: "0.75rem",
             }}
           >
-            <PulseLoader color="#3fb2d1" size={15} />
+            <PulseLoader color="#3fb2d1" size={15} /> {/* Bootstrap primary color */}
           </div>
-        ) : (
+        )}
           <div
             className="card shadow-lg p-4 rounded-3"
             style={{ maxWidth: "450px", width: "100%", opacity: loading ? 0.5 : 1 }}
@@ -123,7 +126,6 @@ export default function UpdateDepartment() {
               </button>
             </form>
           </div>
-        )}
       </div>
     </>
   );

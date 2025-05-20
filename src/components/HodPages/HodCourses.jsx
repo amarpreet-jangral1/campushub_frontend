@@ -13,7 +13,9 @@ export default function HodCourses() {
   const getData = () => {
   setLoading(true);
 
-    ApiServices.manageCourse({ status: true })
+    // ApiServices.manageCourse({ status: true })
+    ApiServices.manageCourse({})
+
       .then((res) => {
         setcourses(res.data.data)
       })

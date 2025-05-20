@@ -11,7 +11,8 @@ export default function HodDept() {
   const [loading, setLoading] = useState(true); 
 
   const getData = () => {
-    ApiServices.manageDepartment({ status: true })
+    ApiServices.manageDepartment({ })
+    // ApiServices.manageDepartment({ status: true })
       .then((res) => {
         // console.log("data is",res.data.data);
         setDepartments(res.data.data)

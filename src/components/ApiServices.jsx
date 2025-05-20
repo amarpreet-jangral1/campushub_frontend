@@ -28,6 +28,9 @@ class ApiServices {
     deleteDepartment(data) {
         return axios.post(BASE_URL + "apis/dept/statusUpdate", data, { headers: this.getToken() });
     }
+    permanentdeleteDepartment(data) {
+        return axios.post(BASE_URL + "apis/dept/delete", data, { headers: this.getToken() });
+    }
 
     getSingleDepartment(data) {
         return axios.post(BASE_URL + "apis/dept/getsingle", data, { headers: this.getToken() });
@@ -49,6 +52,9 @@ class ApiServices {
         return axios.post(BASE_URL + "apis/course/statusUpdate", data, { headers: this.getToken() });
     }
 
+    permanentdeleteCourse(data) {
+        return axios.post(BASE_URL + "apis/course/delete", data, { headers: this.getToken() });
+    }
     getSingleCourse(data) {
         return axios.post(BASE_URL + "apis/course/getsingle", data, { headers: this.getToken() });
     }
@@ -67,6 +73,9 @@ class ApiServices {
 
     deleteStudent(data) {
         return axios.post(BASE_URL + "apis/students/statusUpdate", data, { headers: this.getToken() });
+    }
+    permanentdeleteStudent(data) {
+        return axios.post(BASE_URL + "apis/students/delete", data, { headers: this.getToken() });
     }
 
     getSingleStudent(data) {
@@ -87,6 +96,9 @@ class ApiServices {
 
     deleteHod(data) {
         return axios.post(BASE_URL + "apis/hod/statusUpdate", data, { headers: this.getToken() });
+    }
+    permanentdeleteHod(data) {
+        return axios.post(BASE_URL + "apis/hod/delete", data, { headers: this.getToken() });
     }
 
     getSingleHod(data) {

@@ -120,7 +120,7 @@ export default function Complaints() {
       {/* Header end */}
 
       <ToastContainer position="top-center" autoClose={2000} theme="colored" />
-      <div className="d-flex justify-content-center align-items-center min-vh-100  py-5" >
+      <div className="d-flex justify-content-center align-items-center " style={{ minHeight: "78vh" }} >
         <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "500px", width: "100%" }}>
           <h2 className="text-center text-primary">Add Complaint</h2>
         {loading && (

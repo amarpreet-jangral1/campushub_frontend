@@ -4,12 +4,14 @@ import "react-toastify/dist/ReactToastify.css";
 import PageHeader from "./PageHeader";
 import axios from "axios";
 import ApiServices from "../ApiServices";
+import { PulseLoader } from "react-spinners";
 
 export default function AddCourse() {
     var [course_name, setcourse_name] = useState("");
     var [Dept_id, set_deptid] = useState("");
     var [course_code, setcourse_code] = useState("");
     var [departments, setDepartments] = useState([])
+    const [loading, setLoading] = useState(false);
 
     const getData = () => {
         ApiServices.manageDepartment({ status: true })
@@ -28,6 +30,7 @@ export default function AddCourse() {
 
     function HandleForm(e) {
         e.preventDefault();
+        setLoading(true);
 
         let data = {
             course_name: course_name,
@@ -65,6 +68,9 @@ export default function AddCourse() {
                 setLoad(false)
                 toast.error("Something went wrong!!")
             })
+            .finally(()=>{
+                setLoading(false);
+            })
 
     }
 
@@ -73,12 +79,25 @@ export default function AddCourse() {
             <PageHeader
                 backgroundImage="/assets/img/course.jpg"
                 title="Add Courses"
-            // quote="Knowledge is the path to success"
+            // quote="Knowledgea is the path to success"
             />
 
-            <div className="d-flex justify-content-center align-items-center min-vh-100">
+            <ToastContainer position="top-center" autoClose={2000} theme="colored" />
+        <div className="d-flex justify-content-center align-items-center min-vh-100">
+        {loading && (
+          <div
+            className="position-absolute w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              backdropFilter: "blur(1px)",
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              zIndex: 1000,
+              borderRadius: "0.75rem",
+            }}
+          >
+            <PulseLoader color="#3fb2d1" size={15} /> {/* Bootstrap primary color */}
+          </div>
+        )}
                 <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "450px", width: "100%" }}>
-                    <ToastContainer/>
                     <h2 className="text-center text-primary ">Add Course</h2>
 
                     <form onSubmit={HandleForm}

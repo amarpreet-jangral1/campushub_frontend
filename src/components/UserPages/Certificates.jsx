@@ -105,7 +105,7 @@ export default function Certificates() {
             </Swiper>
             {/* Header end */}
 
-            <div className="d-flex justify-content-center align-items-center min-vh-100">
+            <div className="d-flex justify-content-center align-items-center  " style={{ minHeight: "70vh" }}>
                 <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "500px", width: "100%" }}>
                     <h2 className="text-center text-primary">Apply Certificate</h2>
         {loading && (

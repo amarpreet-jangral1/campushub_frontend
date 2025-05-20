@@ -2,9 +2,12 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import ApiServices from "../ApiServices";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function ManageProfile() {
+  const navigate = useNavigate();
+
   const [profiledata, setProfiledata] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [updatedData, setUpdatedData] = useState({
@@ -14,7 +17,6 @@ export default function ManageProfile() {
     gender: "",
     // enrollment_year: "",
   });
-
   const getData = () => {
     ApiServices.studentProfile()
       .then((res) => {
@@ -68,7 +70,24 @@ export default function ManageProfile() {
         console.error("Update error", err);
       });
   };
-
+function handleLogout() {
+  console.log("handle logout calls");
+  
+    sessionStorage.clear()
+    toast.success("Logout successfully !!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+     setTimeout(() => {
+        navigate("/login")
+      }, 2500);   // Redirect to homepage after logout
+  }
   return (
     <>
       {/* Profile Section Start */}
@@ -82,6 +101,7 @@ export default function ManageProfile() {
           </div>
 
           <div className="row align-items-center g-5">
+      <ToastContainer  />
             <div className="col-md-4 pb-5 d-flex justify-content-center">
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -121,6 +141,9 @@ export default function ManageProfile() {
                 <Link to="/student/changePassword" className="btn btn-warning mt-3">
                   Change Password
                 </Link>
+                <button className="btn btn-danger text-white mt-3" onClick={handleLogout}>
+                  Logout
+                </button>
             </div>
 
             </div>

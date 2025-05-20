@@ -5,6 +5,7 @@ import PageHeader from "./PageHeader";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import ApiServices from "../ApiServices";
+import { PulseLoader } from "react-spinners";
 
 export default function UpdateStudent() {
   // State variables
@@ -17,7 +18,7 @@ export default function UpdateStudent() {
   const [student_dept, setstudent_dept] = useState("");
   const [student_enroll, setstudent_enroll] = useState("");
   const [image, setimage] = useState("");
-  const [Load,setLoad] = useState("");
+  const [loading, setLoading] = useState(false);
   const [oldimage, setoldimage] = useState("");
   const fileInputRef = useRef(null);
 
@@ -64,8 +65,9 @@ export default function UpdateStudent() {
         setstudent_phone(res.data.data.contact)
         setstudent_gender(res.data.data.gender)
         // setstudent_course(res.data.data.courseId.course_name)
-        setstudent_course(res.data.data.courseId.course_name )
-        setstudent_dept(res.data.data.departmentId.dept_name)
+        setstudent_course(res.data.data.courseId._id )
+        // setstudent_course(res.data.data.courseId.course_name )
+        setstudent_dept(res.data.data.departmentId._id)
         setstudent_enroll(res.data.data.enrollment_year)
         setoldimage(res.data.data.image)
       })
@@ -78,7 +80,7 @@ export default function UpdateStudent() {
   function HandleForm(e) {
     e.preventDefault();
     console.log("form submit");
-    
+    setLoading(true)
     let data = new FormData()
     data.append("name", student_name)
     data.append("email", student_email)
@@ -97,11 +99,22 @@ export default function UpdateStudent() {
       console.log("update student res",res);
 
         if (res.data.success) {
-          toast.success(res.data.message)
-          nav("/admin/student_manage")
+          toast.success(res.data.message, {
+            position: "top-center",
+            autoClose: 2000,
+            theme: "colored",
+          });
+          // nav("/admin/student_manage")
+          setTimeout(() => 
+            nav("/admin/student_manage"), 2000
+        );
         }
         else {
-          toast.error(res.data.message)
+         toast.error(res.data.message, {
+            position: "top-center",
+            autoClose: 2000,
+            theme: "colored",
+          });
         }
 
       })
@@ -109,7 +122,10 @@ export default function UpdateStudent() {
         setLoad(false)
         toast.error("Something went wrong!!")
       })
+.finally(()=>{
+    setLoading(false)
 
+})
   }
 
   return (
@@ -119,8 +135,22 @@ export default function UpdateStudent() {
         title="Update Student"
       // quote="Knowledge is the path to success"
       />
+      <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 
       <div className="d-flex justify-content-center align-items-center min-vh-100">
+       {loading && (
+          <div
+            className="position-absolute w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              backdropFilter: "blur(1px)",
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              zIndex: 1000,
+              borderRadius: "0.75rem",
+            }}
+          >
+            <PulseLoader color="#3fb2d1" size={15} /> {/* Bootstrap primary color */}
+          </div>
+        )}
         <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "1000px", width: "100%" }}>
           <h2 className="text-center text-primary ">Update Student</h2>
 
@@ -229,7 +259,7 @@ export default function UpdateStudent() {
                     className="form-control"
                     value={student_dept}
                     onChange={(e) => setstudent_dept(e.target.value)}
-                    placeholder="Code"
+                    // placeholder="Code"
                   >
                     <option value="" selected disabled>Select Department</option>
                     {departments.map((el, index) => (

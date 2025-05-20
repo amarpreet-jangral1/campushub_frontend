@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PageHeader from "./PageHeader";
 import axios from "axios";
 import ApiServices from "../ApiServices";
+import { PulseLoader } from "react-spinners";
 export default function AddHod() {
     const [name, setName] = useState("");
     const [dept_name, setdept_name] = useState("");
@@ -17,6 +18,7 @@ export default function AddHod() {
     const fileInputRef = useRef(null);
 
     var [departments, setDepartments] = useState([])
+    const [loading, setLoading] = useState(false);
 
     const getData = () => {
         ApiServices.manageDepartment({ status: true })
@@ -36,6 +38,7 @@ export default function AddHod() {
 
     function HandleForm(e) {
         e.preventDefault();
+        setLoading(true);
 
         let data = new FormData()
         data.append("name", name)
@@ -77,6 +80,9 @@ export default function AddHod() {
                 setLoad(false)
                 toast.error("Something went wrong!!")
             })
+            .finally(()=>{
+                setLoading(false)
+            })
 
     }
     return (
@@ -88,7 +94,20 @@ export default function AddHod() {
             />
             <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 
-            <div className="d-flex justify-content-center align-items-center min-vh-100">
+            <div className="d-flex justify-content-center align-items-center " style={{ minHeight: "110vh" }}>
+         {loading && (
+          <div
+            className="position-absolute w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              backdropFilter: "blur(1px)",
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              zIndex: 1000,
+              borderRadius: "0.75rem",
+            }}
+          >
+            <PulseLoader color="#3fb2d1" size={15} /> {/* Bootstrap primary color */}
+          </div>
+        )}
                 <div className="card shadow-lg p-4 rounded-3" style={{ maxWidth: "1000px", width: "100%" }}>
                     <h2 className="text-center text-primary">Add HOD</h2>
                     <form onSubmit={HandleForm}
