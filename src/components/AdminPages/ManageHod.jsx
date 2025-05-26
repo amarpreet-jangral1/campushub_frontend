@@ -33,7 +33,7 @@ export default function ManageHod() {
 
   useEffect(() => {
     getdata()
-  }, [loading])
+  }, [])
 
   function handleinactive(_id){
       console.log("handle inactive fun call",_id);
@@ -52,7 +52,8 @@ export default function ManageHod() {
                 autoClose: 2000,
                 theme: "colored",
                 });          
-              setLoading(true);
+              // setLoading(true);
+              getdata()
             }
             else{
               // toast.error(res.data.message)
@@ -71,8 +72,12 @@ export default function ManageHod() {
             autoClose: 2000,
             theme: "colored",
           });
-          setLoading(true);
+          // setLoading(true);
         })
+        .finally(()=>{
+        setLoading(false);
+
+      })
       }
       function handleactive(_id){
         console.log("handle active fun call",_id);
@@ -91,7 +96,8 @@ export default function ManageHod() {
                 autoClose: 2000,
                 theme: "colored",
               });              
-                setLoading(true);
+                // setLoading(true);
+                getdata()
               }
               else{
                 // toast.error(res.data.message)
@@ -108,7 +114,10 @@ export default function ManageHod() {
             toast.error("Something went wrong!!", {
             ee: "colored",
             });          
-            setLoading(true);
+            // setLoading(true);
+          })
+          .finally(()=>{
+            setLoading(false);
           })
         }
 
@@ -138,8 +147,9 @@ export default function ManageHod() {
           autoClose: 2000,
           theme: "colored",
         });
-        setLoading(true);
+        // setLoading(true);
         closeModal();
+        getdata()
       })
       .catch((err) => {
         toast.error("Something Went Wrong!!", {
@@ -148,8 +158,12 @@ export default function ManageHod() {
           theme: "colored",
         });
         closeModal();
-      });
-    setLoading(true);
+      })
+    // setLoading(true);
+    .finally(()=>{
+    setLoading(false);
+
+    })
       }
   // const deletehod = (_id) => {
   //   window.confirm("Are you sure to proceed ?")
@@ -186,7 +200,7 @@ const navigate= useNavigate()
         backgroundImage="/assets/img/manage.webp"
         title="Manage HOD"
       />
-      <ToastContainer position="top-center" autoClose={2000} theme="colored" />
+      {/* <ToastContainer position="top-center" autoClose={2000} theme="colored" /> */}
 
       <div className="container  py-5 my-5">
         <div className="table-responsive" data-aos-delay={500}>

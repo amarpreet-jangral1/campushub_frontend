@@ -29,7 +29,7 @@ export default function ManageStudent() {
     }
     useEffect(() => {
         getData()
-    }, [loading])
+    }, [])
     function handleinactive(_id){
     // console.log("handle inactive fun call",_id);
     let data ={
@@ -45,7 +45,8 @@ export default function ManageStudent() {
               autoClose: 2000,
               theme: "colored",
               });
-            setLoading(true);
+            // setLoading(true);
+            getData()
           }
           else{
             // toast.error(res.data.message)
@@ -63,7 +64,11 @@ export default function ManageStudent() {
           autoClose: 2000,
           theme: "colored",
           });
-        setLoading(true);
+        // setLoading(true);
+      })
+      .finally(()=>{
+        setLoading(false);
+
       })
     }
     function handleactive(_id){
@@ -86,7 +91,8 @@ export default function ManageStudent() {
                 autoClose: 2000,
                 theme: "colored",
                 });
-              setLoading(true);
+              // setLoading(true);
+              getData();
             }
             else{
               // toast.error(res.data.message)
@@ -103,8 +109,12 @@ export default function ManageStudent() {
             autoClose: 2000,
             theme: "colored",
             });
-          setLoading(true);
+          // setLoading(true);
         })
+        .finally(()=>{
+        setLoading(false);
+
+      })
       }
     // const deletestudent = (_id) => {
     //     window.confirm("Are you sure to proceed ?")
@@ -153,8 +163,9 @@ export default function ManageStudent() {
           autoClose: 2000,
           theme: "colored",
         });
-        setLoading(true);
+        // setLoading(true);
         closeModal();
+        getData()
       })
       .catch((err) => {
         toast.error("Something Went Wrong!!", {
@@ -163,8 +174,12 @@ export default function ManageStudent() {
           theme: "colored",
         });
         closeModal();
-      });
-    setLoading(true);
+      })
+    // setLoading(true);
+    .finally(()=>{
+    setLoading(false);
+
+    })
   }
   const navigate= useNavigate()
   const handleEdit = (el) => {
@@ -183,7 +198,7 @@ export default function ManageStudent() {
                 backgroundImage="/assets/img/manage.webp"
                 title="Manage Student"
             />
-            <ToastContainer position="top-center" autoClose={2000} theme="colored" />
+            {/* <ToastContainer position="top-center" autoClose={2000} theme="colored" /> */}
 
             {/* /Hero Section */}
             <div className="container  py-5 my-5">

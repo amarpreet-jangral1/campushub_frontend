@@ -30,7 +30,7 @@ export default function ManageDepartment() {
 
   useEffect(() => {
     getData()
-  }, [loading])
+  }, [])
 
 
 //status update api connection
@@ -44,11 +44,13 @@ export default function ManageDepartment() {
       .then((res) => {
         if (res.data.success) {
           toast.success(res.data.message, {
+            // toastId: "status-update",
             position: "top-center",
             autoClose: 2000,
             theme: "colored",
             });
-          setLoading(true);
+          // setLoading(true);
+          getData();
         } 
         else {
           toast.error(res.data.message, {
@@ -64,8 +66,12 @@ export default function ManageDepartment() {
           autoClose: 2000,
           theme: "colored",
           });
-        setLoading(true);
-      });
+        // setLoading(true);
+      })
+      .finally(()=>{
+        setLoading(false);
+
+      })
   }
 
   function handleactive(_id) {
@@ -82,7 +88,8 @@ export default function ManageDepartment() {
             autoClose: 2000,
             theme: "colored",
             });
-          setLoading(true);
+          // setLoading(true);
+          getData();
         } 
         else {
           toast.error(res.data.message, {
@@ -98,8 +105,12 @@ export default function ManageDepartment() {
           autoClose: 2000,
           theme: "colored",
           });
-        setLoading(true);
-      });
+        // setLoading(true);
+      })
+      .finally(()=>{
+        setLoading(false);
+
+      })
   }
 
   //permanent delete api
@@ -152,6 +163,7 @@ export default function ManageDepartment() {
         });
         setLoading(true);
         closeModal();
+        getData()
       })
       .catch((err) => {
         toast.error("Something Went Wrong!!", {
@@ -160,9 +172,14 @@ export default function ManageDepartment() {
           theme: "colored",
         });
         closeModal();
-      });
-    setLoading(true);
+      })
+    // setLoading(true);
+    .finally(()=>{
+    setLoading(false);
+
+    })
   }
+  
   const navigate= useNavigate()
   const handleEdit = (el) => {
     if (!el.status) {
@@ -180,7 +197,7 @@ export default function ManageDepartment() {
         backgroundImage="/assets/img/manage.webp"
         title="Manage Department"
       />
-      <ToastContainer position="top-center" autoClose={2000} theme="colored" />
+      {/* <ToastContainer position="top-center" autoClose={2000} theme="colored" /> */}
 
       {/* /Hero Section */}
       <div className="container  py-5 my-5">

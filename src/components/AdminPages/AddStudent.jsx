@@ -117,7 +117,7 @@ export default function AddStudent() {
                 title="Add Student"
             //  quote="Knowledge is the path to success"
             />
-            <ToastContainer position="top-center" autoClose={2000} theme="colored" />
+            {/* <ToastContainer position="top-center" autoClose={2000} theme="colored" /> */}
             <div className="d-flex justify-content-center align-items-center   py-5" style={{ minHeight: "120vh" }} >
          {loading && (
           <div

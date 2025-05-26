@@ -29,7 +29,7 @@ const navigate=useNavigate()
 
   useEffect(() => {
     getData()
-  }, [loading])
+  }, [])
 
   function handleinactive(_id){
     // console.log("handle inactive fun call",_id);
@@ -47,7 +47,9 @@ const navigate=useNavigate()
               autoClose: 2000,
               theme: "colored",
               });
-            setLoading(true);
+            // setLoading(true);
+          getData();
+
           }
           else{
             toast.error(res.data.message, {
@@ -64,7 +66,11 @@ const navigate=useNavigate()
           autoClose: 2000,
           theme: "colored",
           });
-        setLoading(true);
+        // setLoading(true);
+      })
+      .finally(()=>{
+        setLoading(false);
+
       })
   }
     function handleactive(_id){
@@ -83,7 +89,8 @@ const navigate=useNavigate()
                 autoClose: 2000,
                 theme: "colored",
                 });
-              setLoading(true);
+              // setLoading(true);
+              getData();
             }
             else{
               toast.error(res.data.message, {
@@ -100,8 +107,12 @@ const navigate=useNavigate()
             autoClose: 2000,
             theme: "colored",
             });
-          setLoading(true);
+          // setLoading(true);
         })
+        .finally(()=>{
+        setLoading(false);
+
+      })
       }
 
       const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -117,7 +128,7 @@ const navigate=useNavigate()
           setIsOpen(false);
           setSelectedId(null);
         }
-      function deleteCourse(){
+  function deleteCourse(){
         if (!selectedId) {
           return;
         }
@@ -129,8 +140,9 @@ const navigate=useNavigate()
           autoClose: 2000,
           theme: "colored",
         });
-        setLoading(true);
+        // setLoading(true);
         closeModal();
+        getData()
       })
       .catch((err) => {
         toast.error("Something Went Wrong!!", {
@@ -139,8 +151,12 @@ const navigate=useNavigate()
           theme: "colored",
         });
         closeModal();
-      });
-    setLoading(true);
+      })
+    // setLoading(true);
+    .finally(()=>{
+    setLoading(false);
+
+    })
       }
         
   // const deletecourse = (_id) => {
@@ -177,7 +193,7 @@ const handleEdit = (el) => {
         backgroundImage="/assets/img/manage.webp"
         title="Manage Course"
       />
-      <ToastContainer position="top-center" autoClose={2000} theme="colored" />
+      {/* <ToastContainer position="top-center" autoClose={2000} theme="colored" /> */}
 
       {/* /Hero Section */}
       <div className="container  py-5 my-5">

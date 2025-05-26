@@ -1,9 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import AdminFooter from "./AdminFooter";
 import AdminHeader from "./AdminHeader";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 
 export default function AdminMaster(){
+    const nav=useNavigate()
+    useEffect(()=>{
+        var userType = sessionStorage.getItem("userType")
+        if(userType != 1){
+        nav("/login")
+        }
+    },[])
     return(
         <>
         <AdminHeader/>

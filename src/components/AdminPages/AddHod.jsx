@@ -92,7 +92,7 @@ export default function AddHod() {
                 title="Add HOD"
             //  quote="Knowledge is the path to success"
             />
-            <ToastContainer position="top-center" autoClose={2000} theme="colored" />
+            {/* <ToastContainer position="top-center" autoClose={2000} theme="colored" /> */}
 
             <div className="d-flex justify-content-center align-items-center " style={{ minHeight: "110vh" }}>
          {loading && (
@@ -166,8 +166,6 @@ export default function AddHod() {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         placeholder="password"
-                                         pattern="^[A-Za-z0-9@#$-_]{6,}$"
-                                        title="Password must be at least 6 characters long and can include uppercase and lowercase letters, numbers, and @ # $ - _ "
                                         required   
                                     />
                                     <label>password</label>

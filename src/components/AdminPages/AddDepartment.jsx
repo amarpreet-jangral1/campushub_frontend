@@ -57,7 +57,7 @@ export default function AddDepartment() {
         title="Add Department"
         // quote="Knowledge is the path to success"
       />
-      <ToastContainer position="top-center" autoClose={2000} theme="colored" />
+      {/* <ToastContainer position="top-center" autoClose={2000} theme="colored" /> */}
 
       <div
         className="d-flex justify-content-center align-items-center position-relative" style={{ minHeight: "70vh" }}

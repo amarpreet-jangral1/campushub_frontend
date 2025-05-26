@@ -94,9 +94,23 @@ export default function AdminComplaints() {
                     <td>{el?.studentId?.email}</td>
                     <td>{el?.complaintDescription}</td>
                     <td>{el?.complaintResponse}</td>
-                    <td>
+                    {/* <td>
                       {el?.image ? <><a href={el?.image} className="btn btn-dark" target="_blank">View</a></> : <></>}
-                    </td>
+                    </td> */}
+                    <td>
+                      {el?.image && el.image !== "null" && el.image !== "no-image.jpg" && el.image.trim() !== "" ? (
+                        <a
+                        href={el.image}
+                        className="btn btn-dark"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >
+                        View
+                        </a>
+                        ) : (
+                        <span className="text-muted">No Attachment</span>
+                        )}
+                      </td>                    
                     <td>{el?.hodId?.name} - {el?.hodId?.email}</td>
                     <td><p style={{ fontWeight: "bolder", fontSize: "15px" }}>{el.complaintStatus}</p></td>
                     <td>
