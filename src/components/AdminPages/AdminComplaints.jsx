@@ -54,7 +54,7 @@ export default function AdminComplaints() {
       {/* Hero Section */}
       <PageHeader
         backgroundImage="/assets/img/complaint.jpg"
-        title="View Complaints Status"
+        title="View Complaints"
       />
       <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 

@@ -54,7 +54,8 @@ export default function ViewTask() {
             <PageHeader
                 backgroundImage="/assets/img/manage4.webp"
                 // backgroundImage="/assets/img/task.jpg"
-                title="View Task Status"
+                title="Resolved Task"
+
             />
             <ToastContainer position="top-center" autoClose={2000} theme="colored" />
 
