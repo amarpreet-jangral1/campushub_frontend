@@ -13,6 +13,7 @@ export default function Login() {
   var [Username, setUsername] = useState("");//usestate hook
   var [Password, setPassword] = useState("");//usestate hook
   const [loading, setLoading] = useState(false);
+const [showPassword, setShowPassword] = useState(false);
 
   var nav = useNavigate()
   useEffect(() => {
@@ -152,7 +153,7 @@ export default function Login() {
             />
           </div>
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <input
               type="password"
               className="form-control form-control-lg border-0 shadow-sm"
@@ -161,7 +162,25 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+          </div> */}
+          <div className="mb-4 position-relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              className="form-control form-control-lg border-0 shadow-sm pe-5"
+              placeholder="Password"
+              value={Password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="position-absolute top-50 end-0 translate-middle-y me-3"
+              style={{ cursor: "pointer", zIndex: 10 }}
+            >
+              <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}></i>
+            </span>
           </div>
+
 
           <button className="btn btn-primary w-100 py-3 rounded-pill" type="submit">
             LOGIN
