@@ -88,9 +88,27 @@ export default function ViewTask() {
                                     <td>{el?.complaintId?.complaintRegarding}</td>
                                     <td>{el?.complaintId?.complaintDescription}</td>
                                     <td>{el?.complaintId?.complaintResponse}</td>
-                                    <td>
+                                    {/* <td>
                                         {el?.complaintId?.image ? <><a href={el?.complaintId?.image} className="btn btn-dark" target="_blank">View</a></> : <></>}
+                                    </td> */}
+                                    <td>
+                                        {el?.complaintId?.image &&
+                                        el.complaintId.image !== "null" &&
+                                        el.complaintId.image !== "no-image.jpg" &&
+                                        el.complaintId.image.trim() !== "" ? (
+                                            <a
+                                            href={el.complaintId.image}
+                                            className="btn btn-dark"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            >
+                                            View
+                                            </a>
+                                        ) : (
+                                            <span className="text-muted">No Attachment</span>
+                                        )}
                                     </td>
+
                                     <td>{el?.hodId?.name} - {el?.hodId?.email}</td>
                                     <td><p style={{ fontWeight: "bolder", fontSize: "15px" }}>{el?.complaintId?.complaintStatus}</p></td>
                                 </tr>

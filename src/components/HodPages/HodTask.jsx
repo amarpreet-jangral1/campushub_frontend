@@ -12,10 +12,18 @@ export default function HodTask() {
 
   const getData = () => {
   setLoading(true);
-
+const loggedInHodId = sessionStorage.getItem("_id");
     ApiServices.manageTask({})
       .then((res) => {
-        settasks(res.data.data)
+        // console.log("res is",res);
+        
+        const filteredTasks = res.data.data.filter(
+        (task) => task?.hodId?.userId === loggedInHodId
+        );
+      settasks(filteredTasks);
+        // console.log("filteredTasks is",filteredTasks);
+
+        // settasks(res.data.data)
       })
       .catch((err) => {
         console.log("error is", err);
@@ -88,9 +96,27 @@ export default function HodTask() {
                   <td>{el?.complaintId?.complaintRegarding}</td>
                   <td>{el?.complaintId?.complaintDescription}</td>
                   <td>{el?.complaintId?.complaintResponse ? el?.complaintId?.complaintResponse : <><Link to={"/hod/complaintResponse/" + el?.complaintId?._id}>Add Response</Link></>}</td>
-                  <td>
+                  {/* <td>
                     {el?.complaintId?.image ? <><a href={el?.complaintId?.image} className="btn btn-dark" target="_blank">View</a></> : <></>}
+                  </td> */}
+                  <td>
+                    {el?.complaintId?.image &&
+                    el.complaintId.image !== "null" &&
+                    el.complaintId.image !== "no-image.jpg" &&
+                    el.complaintId.image.trim() !== "" ? (
+                      <a
+                        href={el.complaintId.image}
+                        className="btn btn-dark"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View
+                      </a>
+                    ) : (
+                      <span className="text-muted">No Attachment</span>
+                    )}
                   </td>
+
                   <td>{el?.hodId?.name} - {el?.hodId?.email}</td>
                   <td><p style={{ fontWeight: "bolder", fontSize: "15px" }}>{el?.complaintId?.complaintStatus}</p></td>
                   <td>
